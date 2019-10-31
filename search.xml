@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>test</title>
+      <link href="/2019/10/31/test/"/>
+      <url>/2019/10/31/test/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>线性回归模型分析</title>
+      <link href="/2019/10/31/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90/"/>
+      <url>/2019/10/31/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<h1 id="线性回归模型分析"><a href="#线性回归模型分析" class="headerlink" title="线性回归模型分析"></a>线性回归模型分析</h1><h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><p>​    利用已知样本数据，产生拟合方程，从而对未知数据进行预测。依据描述自变量与因变量之间的因果关系的函数表达式是线性的还是非线性的，线性即为每个变量的指数幂不超过一次方，为直线形态。</p><h2 id="常见分类："><a href="#常见分类：" class="headerlink" title="常见分类："></a>常见分类：</h2><ul><li>一元线性回归</li><li>多元线性回归</li><li>岭回归</li></ul><h2 id="一元线性回归："><a href="#一元线性回归：" class="headerlink" title="一元线性回归："></a>一元线性回归：</h2><p><strong>基本概念</strong>：回归问题中只涉及到两个变量，主要任务为从两个相关变量中的一个去估计另外一个变量。</p><p><strong>常见形式</strong>：<strong>Y=βx+α+ε</strong></p><p>​    其中α为截距项，β为斜率，ε为误差项</p><p><img src="https://i.loli.net/2019/04/29/5cc6637251fa4.png" alt=""></p><p><strong>求解目标：</strong></p><p>在确定参数时由于点是离散的，所以不可能确保每个点都落在直线上，只能确定一个最佳拟合的直线，因此可以通过误差的平方和来衡量。</p><p><img src="https://i.loli.net/2019/04/29/5cc667e2e79a8.png" alt=""></p><p><strong>损失函数</strong></p><p><img src="https://i.loli.net/2019/05/05/5cceec9caca54.png" alt=""></p><h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p><strong>主要区别：</strong>多变量情况</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2019/10/31/hello-world/"/>
+      <url>/2019/10/31/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
