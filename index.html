@@ -4,7 +4,6 @@
 
 <head>
     <meta charset="utf-8">
-	<meta name="baidu-site-verification" content="BqZWhtAGpA" />
     <meta name="keywords" content="MR.Chopstics">
     <meta name="description" content="MR.Chopstics">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -308,6 +307,10 @@
 
             <div class="cover-btns">
                 
+                <a href="https://github.com/shaowei666" class="waves-effect waves-light btn" target="_blank">
+                    <i class="fab fa-github-alt"></i>Github
+                </a>
+                
             </div>
             <div class="cover-social-link">
 
@@ -429,6 +432,41 @@ $(function () {
 </div>
                     
 
+                    
+                        
+
+<link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<div class="music-player">
+    
+    <div class="title center-align">
+        <i class="fas fa-music"></i>&nbsp;&nbsp;听听音乐吧
+    </div>
+    
+    <div class="row">
+        <div class="col l8 offset-l2 m10 offset-m1 s12">
+            <div id="aplayer" class="music"></div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script>
+$(function () {
+    new APlayer({
+        container: document.getElementById('aplayer'),
+        fixed: 'false' === 'true',
+        autoplay: 'false' === 'true',
+        theme: '#42b983',
+        loop: 'all',
+        order: 'list',
+        preload: 'auto',
+        volume: Number('0.7'),
+        listFolded: 'false' === 'true',
+        listMaxHeight: '',
+        audio: JSON.parse('[{"name":"春风十里","artist":"鹿先森乐队","url":"http://m8.music.126.net/20191101192859/0a74e29adf4ef59623cdfd524dd7bbd5/ymusic/1445/63b3/4f5e/50b602c146cd457b676f51106f235d88.mp3","cover":"https://p3.music.126.net/hYjA4Th6CAdkWI_sm32juw==/109951163669459549.jpg?param=300y300"},{"name":"Shape of You","artist":"J.Fla","url":"http://m8.music.126.net/20191101195245/989046f36177e8560cec62622ba60f34/ymusic/0b23/006a/51bf/0d8255acc1634702e1a184d446f91b88.mp3","cover":"https://p3.music.126.net/5Zs51JS6cQzvQclW5u_J1g==/18832435162240436.jpg?param=300y300"}]')
+    });
+});
+</script>
                     
 
                     
