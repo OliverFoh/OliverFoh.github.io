@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta name="keywords" content="java构造器调用顺序, MR.Chopstics">
     <meta name="description" content="前言今天在看书的时候，看到了关于继承的知识，突然觉得之前的理解还是不够，就想着把学到的关于构造器的知识记录下来
-概念相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如
-public class Te">
+概念相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如::
+public class ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -118,7 +118,7 @@ public class Te">
         <div class="logo-name">MR.Chopstics</div>
         <div class="logo-desc">
             
-            修的平常心，才成非凡事
+            修得平常心，才成非凡事
             
         </div>
     </div>
@@ -364,7 +364,7 @@ public class Te">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    593
+                    644
                 </div>
                 
 
@@ -388,7 +388,7 @@ public class Te">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天在看书的时候，看到了关于继承的知识，突然觉得之前的理解还是不够，就想着把学到的关于构造器的知识记录下来</p>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如<code>::</code></p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span> 
@@ -432,12 +432,30 @@ public class Te">
 <p>上边的程序生动的展现了类继承树中构造器方法的调用顺序，当创建一个子类对象时，系统会依次向上回溯，从继承树顶端的Object类的构造器开始执行，依次往下执行，当在子类中显式调用重载的父类构造器函数时，便不再执行默认的构造器，如果未显式调用时则执行默认的构造器函数，上面代码的执行结果如下：</p>
 <pre><code>horse belongs to animal
 Human society has a long history about 5000 years
-I&#39;am a woman</code></pre><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt=""></p>
+I'am a woman</code></pre><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt=""></p>
 <p>最后，重要的事情说三遍：</p>
 <p><strong>创建子类对象时没有创建父类对象，只是执行了父类的构造器函数！</strong></p>
 <p><strong>创建子类对象时没有创建父类对象，只是执行了父类的构造器函数！</strong></p>
 <p><strong>创建子类对象时没有创建父类对象，只是执行了父类的构造器函数！</strong></p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -452,7 +470,7 @@ I&#39;am a woman</code></pre><p><img src="data:image/gif;base64,R0lGODlhAQABAPAB
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com" rel="external nofollow noreferrer">Shaowei</a>
+                    <a href="http://yoursite.com" rel="external nofollow noreferrer">Shaowei Fu</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -475,7 +493,7 @@ I&#39;am a woman</code></pre><p><img src="data:image/gif;base64,R0lGODlhAQABAPAB
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="http://yoursite.com" target="_blank">Shaowei</a>
+                    <a href="http://yoursite.com" target="_blank">Shaowei Fu</a>
                     !
                 </span>
             </div>
@@ -516,9 +534,6 @@ I&#39;am a woman</code></pre><p><img src="data:image/gif;base64,R0lGODlhAQABAPAB
 
 <div id="article-share">
     
-    
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-    <script src="/libs/share/js/social-share.min.js"></script>
     
 
     
@@ -726,7 +741,7 @@ I&#39;am a woman</code></pre><p><img src="data:image/gif;base64,R0lGODlhAQABAPAB
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            Shaowei
+                            Shaowei Fu
                             
                         </span>
                     </div>
@@ -754,8 +769,8 @@ I&#39;am a woman</code></pre><p><img src="data:image/gif;base64,R0lGODlhAQABAPAB
                     <div class="summary block-with-text">
                         
                             前言今天在看书的时候，看到了关于继承的知识，突然觉得之前的理解还是不够，就想着把学到的关于构造器的知识记录下来
-概念相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如
-public class Te
+概念相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如::
+public class 
                         
                     </div>
                     <div class="publish-info">
@@ -927,13 +942,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             <span id="year">年份</span>
-            <a href="http://yoursite.com" target="_blank">Shaowei</a>
+            <a href="http://yoursite.com" target="_blank">Shaowei Fu</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3k</span>&nbsp;字
+                class="white-color">3.3k</span>&nbsp;字
             
             
             
