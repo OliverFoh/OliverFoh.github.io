@@ -358,7 +358,7 @@ Socket(套接字）
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.1k
                 </div>
                 
 
@@ -398,7 +398,25 @@ Socket(套接字）
 <ul>
 <li><strong>客户端请求连接</strong><br>在这里为了简化，我直接使用socket测试工具进行连接，并发送数据‘hello’<br>accept()方法可以返回一个元组，为一个新的套接字与客户端ip地址与端口，之所以需要返回一个新的套接字是因为为了满足下一次的通信需要，如果使用一个套接字时那么当发送来别的请求时将无法继续监听，因为此时的socket正在使用，所以需要新建一个通信管道。<br><img src="https://img-blog.csdnimg.cn/20190513173044910.png" alt=""><h2 id="三-方法改进"><a href="#三-方法改进" class="headerlink" title="三.方法改进"></a>三.方法改进</h2>上面我们是从最底层建立TCP连接(即从建立最基本的socket开始),事实上在真正的开发中程序员很少去从最底层做，因为已经有了封装的比较好的类库，从而避免了重复造轮子，在这里我们将使用socketserver模块中的服务基类与请求处理基类实现该功能<br><img src="https://img-blog.csdnimg.cn/20190513174407801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70" alt=""><br>这样我们便不用去关心底层建立socket的细节，而只关心业务逻辑的处理，使用TCPServer类有一个缺陷，就是只能为一个客户端服务，是单线程的，当我们想要创建多线程连接时可以使用<strong>ThreadingTCPServer</strong>类来满足。<br>另外，当我们想要去调整底部的socket时可以设置参数<strong>bind_and_activate=False</strong><br><img src="https://img-blog.csdnimg.cn/2019051317493676.png" alt=""></li>
 </ul>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -413,7 +431,7 @@ Socket(套接字）
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com" rel="external nofollow noreferrer">Shaowei Fu</a>
+                    <a href="http://createcode.club" rel="external nofollow noreferrer">Shaowei Fu</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -423,7 +441,7 @@ Socket(套接字）
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2019/11/01/%E7%AE%80%E5%8D%95TCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%84%E5%BB%BA/">http://yoursite.com/2019/11/01/%E7%AE%80%E5%8D%95TCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%84%E5%BB%BA/</a>
+                    <a href="http://createcode.club/2019/11/01/%E7%AE%80%E5%8D%95TCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%84%E5%BB%BA/">http://createcode.club/2019/11/01/%E7%AE%80%E5%8D%95TCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%84%E5%BB%BA/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -436,7 +454,7 @@ Socket(套接字）
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="http://yoursite.com" target="_blank">Shaowei Fu</a>
+                    <a href="http://createcode.club" target="_blank">Shaowei Fu</a>
                     !
                 </span>
             </div>
@@ -876,7 +894,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3k</span>&nbsp;字
+                class="white-color">3.3k</span>&nbsp;字
             
             <br>
             
