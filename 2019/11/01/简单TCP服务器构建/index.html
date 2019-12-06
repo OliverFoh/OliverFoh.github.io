@@ -390,7 +390,7 @@ Socket(套接字）
 <p> 套接字顾名思义就是像插座一样起到了套接的作用。我们知道当不同的两台计算机进行通信时，需要通过彼此的ip地址进行寻址通信，但是计算机上面运行的软件很多，比如在你开微信的时候还听着歌，那么不同的应用程序进行通信时是如何做到互不影响的呢？这就是端口的用途，或许你觉得你可能用不到这个玩意，当你在网上输入任意一个网址时，浏览器都默认给网址的最后加上<strong>80(http协议通信默认端口)</strong>,程序便可以通过端口进行通信，传递信息。</p>
 <ul>
 <li><strong>TCP协议</strong><br> TCP为传输控制协议，我们所遇到的大部分通信都是基于TCP协议的可靠通信，TCP连接之所以可靠是因为TCP建立的是长连接，创建TCP连接时，主动发起连接的叫客户端，被动响应连接的叫服务器。<h2 id="二-实现原理"><a href="#二-实现原理" class="headerlink" title="二.实现原理"></a>二.实现原理</h2><ul>
-<li><strong>创建socket</strong><pre><code> ![](https://img-blog.csdnimg.cn/20190513171805553.png)</code></pre>在这里我们直接导入socket模块，然后创建socket对象，socket类初始化时需要赋参数，因为我们这里创建的是TCP服务，所以就不应改动，如果创建Udp服务时则应该改为family=AF_INET,type=SOCK_DGRAM</li>
+<li><strong>创建socket</strong><br><img src="https://img-blog.csdnimg.cn/20190513171805553.png" alt=""><br>在这里我们直接导入socket模块，然后创建socket对象，socket类初始化时需要赋参数，因为我们这里创建的是TCP服务，所以就不应改动，如果创建Udp服务时则应该改为family=AF_INET,type=SOCK_DGRAM</li>
 </ul>
 </li>
 </ul>
