@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="浏览器请求一个URL详细过程, MR.Chopstics">
-    <meta name="description" content="前言基本每个人每天都会使用到浏览器进行上网，那么在我们输入一个网址后其背后运行的原理是什么样的？如何将一个玲琅满目的网页显示出来，其中经历了一个怎样的过程，总的来说，分为以下几个过程
+    <meta name="keywords" content="简单TCP服务器构建, MR.Chopstics">
+    <meta name="description" content="一.基本概念
+Socket(套接字）
 
-DNS解析
-HTTP请求发送
-服务器处理请求并返回结果">
+
+ socket是一种操作系统提供的进程间通信机制。[1] 在操作系统中，通常会为应用程序提供一组应用程序接口（API），称为套接字接口（英语：socket API）。应用程序可以通过套接字接口，来使">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@ HTTP请求发送
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>浏览器请求一个URL详细过程 | MR.Chopstics</title>
+    <title>简单TCP服务器构建 | MR.Chopstics</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -206,13 +206,13 @@ HTTP请求发送
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        浏览器请求一个URL详细过程
+                        简单TCP服务器构建
                     </div>
                 </div>
             </div>
@@ -324,16 +324,8 @@ HTTP请求发送
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/DNS/">
-                                <span class="chip bg-color">DNS</span>
-                            </a>
-                        
-                            <a href="/tags/HTTP/">
-                                <span class="chip bg-color">HTTP</span>
-                            </a>
-                        
-                            <a href="/tags/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/">
-                                <span class="chip bg-color">页面渲染</span>
+                            <a href="/tags/TCP/">
+                                <span class="chip bg-color">TCP</span>
                             </a>
                         
                     </div>
@@ -344,8 +336,8 @@ HTTP请求发送
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                计算机网络
+                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-category">
+                                服务器
                             </a>
                         
                     </div>
@@ -357,7 +349,7 @@ HTTP请求发送
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-12-12
+                    2019-11-01
                 </div>
                 
 
@@ -366,14 +358,14 @@ HTTP请求发送
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    3 分
                 </div>
                 
 				
@@ -389,94 +381,22 @@ HTTP请求发送
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基本每个人每天都会使用到浏览器进行上网，那么在我们输入一个网址后其背后运行的原理是什么样的？如何将一个玲琅满目的网页显示出来，其中经历了一个怎样的过程，总的来说，分为以下几个过程</p>
-<ul>
-<li>DNS解析</li>
-<li>HTTP请求发送</li>
-<li>服务器处理请求并返回结果</li>
-<li>浏览器渲染页面</li>
-<li>连接结束</li>
+                <h2 id="一-基本概念"><a href="#一-基本概念" class="headerlink" title="一.基本概念"></a>一.基本概念</h2><ul>
+<li><strong>Socket(套接字）</strong></li>
 </ul>
-<h1 id="具体过程"><a href="#具体过程" class="headerlink" title="具体过程"></a>具体过程</h1><h2 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h2><p>DNS解析就是寻找要访问的资源的IP地址，在计算机网络中是根据IP地址对每台主机进行定位的，相当于唯一的<strong>标识</strong>。比如小明是一名大学生，有一天他想要上淘宝买一个耳机，在浏览器地址栏输入后进行访问时会先在<a href="www.taobao.com"></a><strong>hosts</strong>文件中查看，没有的话再在<strong>本地DNS服务器</strong>(一般为所在地运营商机房)查询，本地DNS收到查询请求后会在缓存中查询，如果还没有的话本地DNS将向根域名服务器发送请求，根域名服务器收到请求后一看后缀是<strong>.com</strong>，好了，把.com顶级域名服务器的地址返回，你去问它吧。然后.com顶级域名服务器中将<strong>taobao.com权威域名服务器</strong>返回，权威域名服务器最终返回taobao.com对应的IP地址，下图比较详细的说明了DNS解析的过程（该图源自网络）。</p>
-<p><img src="https://i.loli.net/2019/12/19/u6wMaQhndYpxg91.png" alt="DNS解析过程"></p>
-<p>可使用<strong>tracert</strong>命令跟踪到URL中间的网络节点</p>
-<pre><code>tracert www.baidu.com</code></pre><p><strong>备注：</strong>事实上可能我们大部分情况下在电脑设置里看到的本地DNS服务器地址都是192.168.XX.XX,这个大多是局域网下的路由器，而路由器也只是起到了转发的作用，将DNS请求转发到运营商机房。</p>
-<h2 id="发送HTTP请求"><a href="#发送HTTP请求" class="headerlink" title="发送HTTP请求"></a>发送HTTP请求</h2><p>在做完DNS解析后浏览器也就得到了要请求的主机IP，接下来就是向该主机发送请求信息。虽然我们不用去关心具体请求是怎么发送过去的，但是在这里还是大概说一下。</p>
-<p>在连接发送过程中，大概使用了以下网络协议</p>
+<blockquote>
+<p> socket是一种操作系统提供的进程间通信机制。[1] 在操作系统中，通常会为应用程序提供一组应用程序接口（API），称为套接字接口（英语：socket API）。应用程序可以通过套接字接口，来使用网络套接字，以进行数据交换。最早的套接字接口来自于4.2 BSD，因此现代常见的套接字接口大多源自Berkeley套接字（Berkeley sockets）标准。在套接字接口中，以IP地址及通信端口组成套接字地址（socket address）。远程的套接字地址，以及本地的套接字地址完成连线后，再加上使用的协议（protocol），这个五元组（five-element tuple），作为套接字对（socket pairs），之后就可以彼此交换数据。例如，在同一台计算机上，TCP协议与UDP协议可以同时使用相同的port而互不干扰。<br>  操作系统根据套接字地址，可以决定应该将数据送达特定的行程或线程。这就像是电话系统中，以电话号码加上分机号码，来决定通话对象一般。<br> 材料来源：维基百科 </p>
+</blockquote>
+<p> 套接字顾名思义就是像插座一样起到了套接的作用。我们知道当不同的两台计算机进行通信时，需要通过彼此的ip地址进行寻址通信，但是计算机上面运行的软件很多，比如在你开微信的时候还听着歌，那么不同的应用程序进行通信时是如何做到互不影响的呢？这就是端口的用途，或许你觉得你可能用不到这个玩意，当你在网上输入任意一个网址时，浏览器都默认给网址的最后加上<strong>80(http协议通信默认端口)</strong>,程序便可以通过端口进行通信，传递信息。</p>
 <ul>
-<li>TCP    与服务器建立TCP连接</li>
-<li>IP            网络层协议，用于发送IP数据包</li>
-<li>OPSF      路由协议，IP数据包在路由器间传递基于相应路由协议</li>
-<li>ARP协议    用于将IP地址转换为MAC地址（物理地址唯一）</li>
-<li>HTTP协议    应用层协议，用于发送HTTP报文请求</li>
+<li><strong>TCP协议</strong><br> TCP为传输控制协议，我们所遇到的大部分通信都是基于TCP协议的可靠通信，TCP连接之所以可靠是因为TCP建立的是长连接，创建TCP连接时，主动发起连接的叫客户端，被动响应连接的叫服务器。<h2 id="二-实现原理"><a href="#二-实现原理" class="headerlink" title="二.实现原理"></a>二.实现原理</h2><ul>
+<li><strong>创建socket</strong><br><img src="https://img-blog.csdnimg.cn/20190513171805553.png" alt=""><br>在这里我们直接导入socket模块，然后创建socket对象，socket类初始化时需要赋参数，因为我们这里创建的是TCP服务，所以就不应改动，如果创建Udp服务时则应该改为family=AF_INET,type=SOCK_DGRAM</li>
 </ul>
-<p>以上过程作为不同计算机之间通信的必须协议，看来计算机底层帮我们做了太多的工作了^.^</p>
-<p>另外，由于考虑到安全性请求，事实上我们大部分情况下访问网站都是发送的<strong>HTTPS</strong>请求</p>
-<p><img src="https://onedrive.gimhoy.com/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBcGtNdG56TnhsVm9lZWFlWUhfUXZsbHdRbkE=.png" alt="HTTPS原理"></p>
-<p>上图中HTTPS实现加密的过程不必详细了解，只需要知道HTTPS是运行在SSL/TLS之上的HTTP协议，SSL/TLS 运行在TCP之上。所有传输的内容都经过加密，如果想要深入研究可以参考本文——<a href="https://juejin.im/post/5d53aa04f265da03934bd70c" target="_blank" rel="noopener">图解HTTPS基本原理</a></p>
-<h2 id="服务器处理请求"><a href="#服务器处理请求" class="headerlink" title="服务器处理请求"></a>服务器处理请求</h2><p>服务器主机上的服务器软件（tomcat、nginx、werkzurk等）在收到请求后，会处理请求并返回HTTP响应报文</p>
-<p>HTTP响应报文由三部分组成：状态行、响应头部、响应正文</p>
-<h3 id="状态行"><a href="#状态行" class="headerlink" title="状态行"></a>状态行</h3><p>由三部分组成——协议版本，状态码，状态码描述，之间由空格分隔，在这里列举了不同数字开头的状态码</p>
-<ul>
-<li><p>1xx：指示信息–表示请求已接收，继续处理。</p>
-</li>
-<li><p>2xx：成功–表示请求已被成功接收、理解、接受。</p>
-</li>
-<li><p>3xx：重定向–要完成请求必须进行更进一步的操作。</p>
-</li>
-<li><p>4xx：客户端错误–请求有语法错误或请求无法实现。</p>
-</li>
-<li><p>5xx：服务器端错误–服务器未能实现合法的请求。</p>
-<p>我们所常见的404错误就是由于客户端发生错误</p>
 </li>
 </ul>
-<h3 id="响应头部"><a href="#响应头部" class="headerlink" title="响应头部"></a>响应头部</h3><p>下面是一些常见的响应头部</p>
-<table>
-<thead>
-<tr>
-<th align="left">响应头</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Server</td>
-<td align="left">服务器应用程序软件的名称和版本</td>
-</tr>
-<tr>
-<td align="left">Content-Type</td>
-<td align="left">响应正文的类型（是图片还是二进制字符串）</td>
-</tr>
-<tr>
-<td align="left">Content-Charset</td>
-<td align="left">响应正文使用的编码</td>
-</tr>
-<tr>
-<td align="left">Content-Encoding</td>
-<td align="left">响应正文使用的数据压缩格式</td>
-</tr>
-<tr>
-<td align="left">Content-Language</td>
-<td align="left">响应正文使用的语言</td>
-</tr>
-</tbody></table>
-<p>响应示例</p>
-<p><img src="https://i.loli.net/2019/12/19/vukOdIlys8pbmre.png" alt="响应头"></p>
-<h2 id="浏览器渲染页面"><a href="#浏览器渲染页面" class="headerlink" title="浏览器渲染页面"></a>浏览器渲染页面</h2><p>在服务器处理好请求请求并返回后，浏览器会将返回的网页源码渲染出来，浏览器渲染页面基于webkit内核，先上一张图</p>
-<p><img src="https://i.loli.net/2019/12/19/fJPeqGlQwYFvWtR.png" alt="页面渲染过程图"></p>
-<p>从这张图，我们可以看到浏览器会解析三个东西：</p>
+<p> <strong>socket类构建方法参数类型</strong><br><img src="https://img-blog.csdnimg.cn/20190513172445518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70" alt=""></p>
 <ul>
-<li><p>一个是HTML/SVG/XHTML，事实上，Webkit有三个C++的类对应这三类文档。解析这三种文件会产生一个DOM Tree</p>
-</li>
-<li><p>CSS，解析CSS会产生CSS规则树</p>
-</li>
-<li><p>Javascript，脚本，主要是通过DOM API和CSSOM API来操作DOM Tree和CSS Rule Tree</p>
-</li>
-</ul>
-<p>在解析完成后浏览器引擎会通过DOM Tree 和 CSS Rule Tree 来构造 Rendering Tree，最后通过调用操作系统Native GUI的API绘制。具体可以参考<a href="https://coolshell.cn/articles/9666.html" target="_blank" rel="noopener">浏览器的渲染原理简介</a></p>
-<h2 id="连接结束"><a href="#连接结束" class="headerlink" title="连接结束"></a>连接结束</h2><p>在渲染完成后一次访问请求也就结束了。事实上，第一次加载网页往往比较慢，但后续加载该网页会快很多，这是因为DNS缓存和浏览器缓存等起的作用，将一些静态资源暂时缓存到本地以备下次访问使用，可以提高了页面的加载速率，用户的体验感更好。</p>
-<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
-<li><a href="https://segmentfault.com/a/1190000006879700" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006879700</a></li>
-<li><a href="https://coolshell.cn/articles/9666.html" target="_blank" rel="noopener">https://coolshell.cn/articles/9666.html</a></li>
+<li><strong>客户端请求连接</strong><br>在这里为了简化，我直接使用socket测试工具进行连接，并发送数据‘hello’<br>accept()方法可以返回一个元组，为一个新的套接字与客户端ip地址与端口，之所以需要返回一个新的套接字是因为为了满足下一次的通信需要，如果使用一个套接字时那么当发送来别的请求时将无法继续监听，因为此时的socket正在使用，所以需要新建一个通信管道。<br><img src="https://img-blog.csdnimg.cn/20190513173044910.png" alt=""><h2 id="三-方法改进"><a href="#三-方法改进" class="headerlink" title="三.方法改进"></a>三.方法改进</h2>上面我们是从最底层建立TCP连接(即从建立最基本的socket开始),事实上在真正的开发中程序员很少去从最底层做，因为已经有了封装的比较好的类库，从而避免了重复造轮子，在这里我们将使用socketserver模块中的服务基类与请求处理基类实现该功能<br><img src="https://img-blog.csdnimg.cn/20190513174407801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70" alt=""><br>这样我们便不用去关心底层建立socket的细节，而只关心业务逻辑的处理，使用TCPServer类有一个缺陷，就是只能为一个客户端服务，是单线程的，当我们想要创建多线程连接时可以使用<strong>ThreadingTCPServer</strong>类来满足。<br>另外，当我们想要去调整底部的socket时可以设置参数<strong>bind_and_activate=False</strong><br><img src="https://img-blog.csdnimg.cn/2019051317493676.png" alt=""></li>
 </ul>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -511,7 +431,7 @@ HTTP请求发送
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://createcode.club" rel="external nofollow noreferrer">Shaowei Fu</a>
+                    <a href="www.createcode.club" rel="external nofollow noreferrer">Shaowei Fu</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -521,7 +441,7 @@ HTTP请求发送
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://createcode.club/2019/12/12/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E4%B8%80%E4%B8%AAURL%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/">http://createcode.club/2019/12/12/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E4%B8%80%E4%B8%AAURL%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/</a>
+                    <a href="www.createcode.club/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/">www.createcode.club/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -534,7 +454,7 @@ HTTP请求发送
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="http://createcode.club" target="_blank">Shaowei Fu</a>
+                    <a href="www.createcode.club" target="_blank">Shaowei Fu</a>
                     !
                 </span>
             </div>
@@ -559,16 +479,8 @@ HTTP请求发送
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/DNS/">
-                                    <span class="chip bg-color">DNS</span>
-                                </a>
-                            
-                                <a href="/tags/HTTP/">
-                                    <span class="chip bg-color">HTTP</span>
-                                </a>
-                            
-                                <a href="/tags/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/">
-                                    <span class="chip bg-color">页面渲染</span>
+                                <a href="/tags/TCP/">
+                                    <span class="chip bg-color">TCP</span>
                                 </a>
                             
                         </div>
@@ -736,7 +648,7 @@ HTTP请求发送
         repo: 'shaowei666.github.io',
         owner: 'shaowei666',
         admin: "shaowei666",
-        id: '2019-12-12T21-33-10',
+        id: '2019-11-01T12-12-33',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -761,34 +673,31 @@ HTTP请求发送
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/12/19/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E6%96%87%E6%A1%A3%E4%B8%8B%E8%BD%BD/">
+                <a href="/2019/11/01/qian-xiang-dai-li-yu-fan-xiang-dai-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="百度文库文档下载">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="前向代理与反向代理">
                         
-                        <span class="card-title">百度文库文档下载</span>
+                        <span class="card-title">前向代理与反向代理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            之前用过一个百度文库在线下载文档的网站，非常好用，除了付费购买的不能下载之外其他的都可以下载，所以在这里安利一下。
-网址：http://www.blpack.com/
-
-        document.querySelectorAll('
+                            基本概念   代理顾名思义就是自己不去干一件事，让别人帮你去干。同样的，我们在网络上访问一些服务时也需要通过代理去完成，比如有天你想要看某某hub,但是你在China时看不到的，所以此时你便需要一个国外的代理服务器代理你去访问，然后将结果返
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-11-01
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/" class="post-category">
-                                    资源分享
+                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-category">
+                                    服务器
                                 </a>
                             
                             
@@ -798,8 +707,8 @@ HTTP请求发送
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93/">
-                        <span class="chip bg-color">百度文库</span>
+                    <a href="/tags/%E4%BB%A3%E7%90%86/">
+                        <span class="chip bg-color">代理</span>
                     </a>
                     
                 </div>
@@ -813,31 +722,32 @@ HTTP请求发送
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/05/%E7%BB%86%E8%AF%B4ip/">
+                <a href="/2019/10/25/ha-fu-man-shu-ji-ha-fu-man-bian-ma-xiang-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="细说ip">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="哈夫曼树及哈夫曼编码详解">
                         
-                        <span class="card-title">细说ip</span>
+                        <span class="card-title">哈夫曼树及哈夫曼编码详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言在互联网中，每台计算机要实现通信的前提就是互相知道对方的地址，那么这个地址就是IP，通过IP地址我们可以很方便的在因特网上进行寻址。IP地址现在由因特网和数字分配机构ICANN(Internet Corporation for Assi
+                            基本概念哈夫曼编码
+在讲哈夫曼树之前先来介绍一下哈夫曼编码的概念。在信息编码、数据压缩等方面，我们总是希望编码能够尽可能的简短一点，如此才能节省空间，提高传输效率。例如：如果采用等长编码的话编码’abcd’,则为00，01，10，11，此时
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                    计算机网络
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
                                 </a>
                             
                             
@@ -847,12 +757,8 @@ HTTP请求发送
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ip/">
-                        <span class="chip bg-color">ip</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%B1%80%E5%9F%9F%E7%BD%91/">
-                        <span class="chip bg-color">局域网</span>
+                    <a href="/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/">
+                        <span class="chip bg-color">哈夫曼树</span>
                     </a>
                     
                 </div>

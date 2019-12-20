@@ -4,11 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="百度文库文档下载, MR.Chopstics">
-    <meta name="description" content="之前用过一个百度文库在线下载文档的网站，非常好用，除了付费购买的不能下载之外其他的都可以下载，所以在这里安利一下。
-网址：http://www.blpack.com/
-
-        document.querySelectorAll(&#39;">
+    <meta name="keywords" content="java构造器调用顺序, MR.Chopstics">
+    <meta name="description" content="前言今天在看书的时候，看到了关于继承的知识，突然觉得之前的理解还是不够，就想着把学到的关于构造器的知识记录下来
+概念相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如：
+public class T">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>百度文库文档下载 | MR.Chopstics</title>
+    <title>java构造器调用顺序 | MR.Chopstics</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -205,13 +204,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        百度文库文档下载
+                        java构造器调用顺序
                     </div>
                 </div>
             </div>
@@ -323,8 +322,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93/">
-                                <span class="chip bg-color">百度文库</span>
+                            <a href="/tags/%E6%9E%84%E9%80%A0%E5%99%A8/">
+                                <span class="chip bg-color">构造器</span>
+                            </a>
+                        
+                            <a href="/tags/java/">
+                                <span class="chip bg-color">java</span>
                             </a>
                         
                     </div>
@@ -335,8 +338,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/" class="post-category">
-                                资源分享
+                            <a href="/categories/java/" class="post-category">
+                                java
                             </a>
                         
                     </div>
@@ -348,7 +351,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-12-19
+                    2019-10-21
                 </div>
                 
 
@@ -357,14 +360,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    111
+                    644
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 				
@@ -380,8 +383,56 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>之前用过一个百度文库在线下载文档的网站，非常好用，除了付费购买的不能下载之外其他的都可以下载，所以在这里安利一下。</p>
-<p>网址：<a href="http://www.blpack.com/" target="_blank" rel="noopener">http://www.blpack.com/</a></p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天在看书的时候，看到了关于继承的知识，突然觉得之前的理解还是不够，就想着把学到的关于构造器的知识记录下来</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> is_man<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       Test test<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt=""></p>
+<p>上边这段代码在做着一件简简单单的事情，在堆内存中申请一块内存，创建类的实体对象并为变量赋初值（数值型为0，布尔型为false）。很多人会认为执行构造器方法就是在创建方法，事实上在构造器方法执行前系统已经创建了对象，只不过该对象当前还不能被外界访问而已，构造器函数当前只是执行了成员变量的初始化功能。</p>
+<h2 id="继承中的构造器"><a href="#继承中的构造器" class="headerlink" title="继承中的构造器"></a>继承中的构造器</h2><p>在这里有一个很典型的例子</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Animal</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> String msg<span class="token operator">=</span><span class="token string">"I'am animal"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Animal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token function">Animal</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token operator">+</span><span class="token string">" belongs to animal"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Human</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> String msg<span class="token operator">=</span><span class="token string">"I'am human"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Human</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token function">Human</span><span class="token punctuation">(</span><span class="token keyword">int</span> history<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token string">"horse"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Human society has a long history about "</span><span class="token operator">+</span>history<span class="token operator">+</span><span class="token string">" years"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Woman</span> <span class="token keyword">extends</span> <span class="token class-name">Human</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> String msg<span class="token operator">=</span><span class="token string">"I'am a woman"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Woman</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt=""></p>
+<p>上边的程序生动的展现了类继承树中构造器方法的调用顺序，当创建一个子类对象时，系统会依次向上回溯，从继承树顶端的Object类的构造器开始执行，依次往下执行，当在子类中显式调用重载的父类构造器函数时，便不再执行默认的构造器，如果未显式调用时则执行默认的构造器函数，上面代码的执行结果如下：</p>
+<pre><code>horse belongs to animal
+Human society has a long history about 5000 years
+I'am a woman</code></pre><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt=""></p>
+<p>最后，重要的事情说三遍：</p>
+<p><strong>创建子类对象时没有创建父类对象，只是执行了父类的构造器函数！</strong></p>
+<p><strong>创建子类对象时没有创建父类对象，只是执行了父类的构造器函数！</strong></p>
+<p><strong>创建子类对象时没有创建父类对象，只是执行了父类的构造器函数！</strong></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -415,7 +466,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://createcode.club" rel="external nofollow noreferrer">Shaowei Fu</a>
+                    <a href="www.createcode.club" rel="external nofollow noreferrer">Shaowei Fu</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -425,7 +476,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://createcode.club/2019/12/19/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E6%96%87%E6%A1%A3%E4%B8%8B%E8%BD%BD/">http://createcode.club/2019/12/19/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E6%96%87%E6%A1%A3%E4%B8%8B%E8%BD%BD/</a>
+                    <a href="www.createcode.club/2019/10/21/java-gou-zao-qi-diao-yong-shun-xu/">www.createcode.club/2019/10/21/java-gou-zao-qi-diao-yong-shun-xu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -438,7 +489,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="http://createcode.club" target="_blank">Shaowei Fu</a>
+                    <a href="www.createcode.club" target="_blank">Shaowei Fu</a>
                     !
                 </span>
             </div>
@@ -463,8 +514,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93/">
-                                    <span class="chip bg-color">百度文库</span>
+                                <a href="/tags/%E6%9E%84%E9%80%A0%E5%99%A8/">
+                                    <span class="chip bg-color">构造器</span>
+                                </a>
+                            
+                                <a href="/tags/java/">
+                                    <span class="chip bg-color">java</span>
                                 </a>
                             
                         </div>
@@ -632,7 +687,7 @@
         repo: 'shaowei666.github.io',
         owner: 'shaowei666',
         admin: "shaowei666",
-        id: '2019-12-19T22-26-20',
+        id: '2019-10-21T18-30-50',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -657,37 +712,32 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/12/20/git%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/">
+                <a href="/2019/10/25/ha-fu-man-shu-ji-ha-fu-man-bian-ma-xiang-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="git详细步骤">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="哈夫曼树及哈夫曼编码详解">
                         
-                        <span class="card-title">git详细步骤</span>
+                        <span class="card-title">哈夫曼树及哈夫曼编码详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基本用法
-
-上面的四条命令在工作目录、暂存目录(也叫做索引)和仓库之间复制文件
-
-git add files 把当前文件放入暂存区域
-git commit 给暂存区域生成快照并提交
-git reset – files 用来撤销最后一次git
+                            基本概念哈夫曼编码
+在讲哈夫曼树之前先来介绍一下哈夫曼编码的概念。在信息编码、数据压缩等方面，我们总是希望编码能够尽可能的简短一点，如此才能节省空间，提高传输效率。例如：如果采用等长编码的话编码’abcd’,则为00，01，10，11，此时
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-20
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-25
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Git/" class="post-category">
-                                    Git
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
                                 </a>
                             
                             
@@ -697,8 +747,8 @@ git reset – files 用来撤销最后一次git
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/git/">
-                        <span class="chip bg-color">git</span>
+                    <a href="/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/">
+                        <span class="chip bg-color">哈夫曼树</span>
                     </a>
                     
                 </div>
@@ -709,57 +759,52 @@ git reset – files 用来撤销最后一次git
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2019/12/12/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E4%B8%80%E4%B8%AAURL%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/">
+                <a href="/2019/10/21/java-gou-zao-qi-diao-yong-shun-xu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="浏览器请求一个URL详细过程">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="java构造器调用顺序">
                         
-                        <span class="card-title">浏览器请求一个URL详细过程</span>
+                        <span class="card-title">java构造器调用顺序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言基本每个人每天都会使用到浏览器进行上网，那么在我们输入一个网址后其背后运行的原理是什么样的？如何将一个玲琅满目的网页显示出来，其中经历了一个怎样的过程，总的来说，分为以下几个过程
-
-DNS解析
-HTTP请求发送
-服务器处理请求并返回结果
+                            前言今天在看书的时候，看到了关于继承的知识，突然觉得之前的理解还是不够，就想着把学到的关于构造器的知识记录下来
+概念相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如：
+public class T
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-21
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                    计算机网络
+                            <a href="/categories/java/" class="post-category">
+                                    java
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/DNS/">
-                        <span class="chip bg-color">DNS</span>
+                    <a href="/tags/%E6%9E%84%E9%80%A0%E5%99%A8/">
+                        <span class="chip bg-color">构造器</span>
                     </a>
                     
-                    <a href="/tags/HTTP/">
-                        <span class="chip bg-color">HTTP</span>
-                    </a>
-                    
-                    <a href="/tags/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/">
-                        <span class="chip bg-color">页面渲染</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
                 </div>
