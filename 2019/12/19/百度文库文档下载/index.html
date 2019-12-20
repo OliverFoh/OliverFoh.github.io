@@ -4,8 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="细说ip, MR.Chopstics">
-    <meta name="description" content="前言在互联网中，每台计算机要实现通信的前提就是互相知道对方的地址，那么这个地址就是IP，通过IP地址我们可以很方便的在因特网上进行寻址。IP地址现在由因特网和数字分配机构ICANN(Internet Corporation for Assi">
+    <meta name="keywords" content="百度文库文档下载, MR.Chopstics">
+    <meta name="description" content="之前用过一个百度文库在线下载文档的网站，非常好用，除了付费购买的不能下载之外其他的都可以下载，所以在这里安利一下。
+网址：http://www.blpack.com/
+
+        document.querySelectorAll(&#39;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>细说ip | MR.Chopstics</title>
+    <title>百度文库文档下载 | MR.Chopstics</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,13 +205,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        细说ip
+                        百度文库文档下载
                     </div>
                 </div>
             </div>
@@ -320,12 +323,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ip/">
-                                <span class="chip bg-color">ip</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%B1%80%E5%9F%9F%E7%BD%91/">
-                                <span class="chip bg-color">局域网</span>
+                            <a href="/tags/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93/">
+                                <span class="chip bg-color">百度文库</span>
                             </a>
                         
                     </div>
@@ -336,8 +335,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                计算机网络
+                            <a href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/" class="post-category">
+                                资源分享
                             </a>
                         
                     </div>
@@ -349,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-05
+                    2019-12-19
                 </div>
                 
 
@@ -358,14 +357,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    111
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    1 分
                 </div>
                 
 				
@@ -381,57 +380,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在互联网中，每台计算机要实现通信的前提就是互相知道对方的地址，那么这个地址就是<strong>IP</strong>，通过IP地址我们可以很方便的在因特网上进行寻址。IP地址现在由因特网和数字分配机构ICANN(Internet Corporation for Assigned Names and Numbers)进行分配。</p>
-<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>按照长度分为</p>
-<ul>
-<li><p><strong>IPV4</strong>地址（4字节）</p>
-</li>
-<li><p><strong>IPV6</strong>地址（16字节）</p>
-<p>按照用途分为</p>
-</li>
-<li><p>公有地址（公网ip）</p>
-</li>
-<li><p>私有地址（内网ip）</p>
-</li>
-</ul>
-<p>另外，IP地址的编址方法一共经过了三个阶段。</p>
-<ol>
-<li><p>分类的IP地址，最基本的编址方法，下文将详细叙述。</p>
-</li>
-<li><p>子网的划分，对最基本编址方法的改进，其标准RFC 950在1985年通过。</p>
-</li>
-<li><p>构成超网，属于比较新的无分类编址方法，1993年提出后很快得到推广应用<br>在分类IP地址中，IP地址由两段构成，网络号与主机号</p>
-<pre><code>   IP地址  =网络号+主机号</code></pre></li>
-</ol>
-<h2 id="IPV4"><a href="#IPV4" class="headerlink" title="IPV4"></a>IPV4</h2><blockquote>
-<p><strong>网际协议版本4</strong>（英语：<strong>I</strong>nternet <strong>P</strong>rotocol <strong>v</strong>ersion <strong>4</strong>，缩写：<strong>IPv4</strong>，又称<strong>互联网通信协议第四版</strong>）是<a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">网际协议</a>开发过程中的第四个修订版本，也是此协议第一个被广泛部署和使用的版本。</p>
-<p>IPv4是一种<a href="https://zh.wikipedia.org/wiki/%E7%84%A1%E9%80%A3%E6%8E%A5%E5%BC%8F%E9%80%9A%E8%A8%8A" target="_blank" rel="noopener">无连接</a>的协议，操作在使用<a href="https://zh.wikipedia.org/wiki/%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2" target="_blank" rel="noopener">分组交换</a>的链路层（如<a href="https://zh.wikipedia.org/wiki/%E4%BB%A5%E5%A4%AA%E7%BD%91" target="_blank" rel="noopener">以太网</a>）上。此协议会尽最大努力交付数据包，意即它不保证任何数据包均能送达目的地，也不保证所有数据包均按照正确的顺序无重复地到达。这些方面是由上层的传输协议（如<a href="https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">传输控制协议</a>）处理的。</p>
-</blockquote>
-<p>上边的话显得太专业，可能有的小伙伴会听不懂，其实简而言之IP地址就是给因特网上的每一个主机或路由器的每个接口分配一个在全世界范围内唯一的32位的标识符（其实就差不多相当于我们的电话号码）,一个IP地址在整个因特网范围内都是唯一的。</p>
-<h3 id="分类的IP地址"><a href="#分类的IP地址" class="headerlink" title="分类的IP地址"></a>分类的IP地址</h3><p>首先介绍一下A类、B类、C类网络地址，详见下图<br><img src="https://onedrive.gimhoy.com/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBcGtNdG56TnhsVm9kaXRnWGlUdDZPMmVqNVU=.png" alt=""></p>
-<ul>
-<li>如上图所示，A类地址中最高位为0，剩下的31位中高7位为网络标识符，主机标识位为24位，意味着每个网络可以容纳1600多万台的主机，A 类占整个地址空间的 50%。 然而，只有 126 个组织可以分配 A 类网络地址。 有趣的是，每个组织都可以为 16,000,000 台主机提供地址。 超大型组织会分配整个 A 类地址块。 时至今日，仍有公司和政府组织拥有 A 类地址。 例如，通用电气公司拥有 3.0.0.0/8，苹果电脑公司拥有 17.0.0.0/8，美国 邮政总局拥有 56.0.0.0/8。</li>
-<li>B类IP地址是指，在IP地址的四段号码中，前两段号码为网络号码，剩下的两段号码为本地计算机的号码。如果用二进制表示IP地址的话，B类IP地址就由2字节的网络地址和2字节主机地址组成，网络地址的最高位必须是“10”。B类IP地址中网络的标识长度为14位，主机标识的长度为16位，B类网络地址适用于中等规模规模的网络，每个网络所能容纳的计算机数为6万多台。B 类占整个地址空间的 25%。 最多 16,384 个组织可以分配 B 类网络地址，每个网络可以支持 65,534 台主机。 只有那些特大型的公司/组织或政府部门有可能会使用到所有 65,000 个地址。 与 A 类网络类似，B 类地址空间浪费许多 IP 地址。</li>
-<li>C类IP地址是指，在IP地址的四段号码中，前三段号码为网络号码，剩下的一段号码为本地计算机的号码。如果用二进制表示IP地址的话，C类IP地址就由3字节的网络地址和1字节主机地址组成，网络地址的最高位必须是“110”。C类IP地址中网络的标识长度为21位，主机标识的长度为8位，C类网络地址数量较多，适用于小规模的局域网络，每个网络最多只能包含254台计算机。   C 类占整个地址空间的 12.5%。 许多组织可以获得 C 类网络，但是限于它们能够连接的主机总数。 事实上，在许多情况下，C 类地址对于大多数中型企业来说通常太小。<br>看完了三类地址的简单介绍后可能会有点一头雾水，没关系，看完下边你可能更懵<br><img src="https://onedrive.gimhoy.com/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBcGtNdG56TnhsVm9kd0JQTzZkVmVBcFc2TEk=.png" alt=""></li>
-</ul>
-<h4 id="单播、多播、广播"><a href="#单播、多播、广播" class="headerlink" title="单播、多播、广播"></a>单播、多播、广播</h4><p>除了上面三种类型的IP地址外，还有几种特殊类型的IP地址，TCP/IP协议规定，凡IP地址中的第一个字节以“1110”开始的地址都叫多点广播地址。在这里就要说一下单播、广播、多播地址的区别。</p>
-<blockquote>
-<ul>
-<li><p>单播地址是IP网络中最常见的。包含单播目标地址的分组发送给特定主机，一个这样的例子是，IP地址为192.168.1.5（源地址）的主机向IP地址为192.168.1.200（目标地址）的服务器请求网页。要发送和接收单播分组，IP分组报头中必须有一个目标IP地址，而以太网帧报头中必须有相应的目标MAC地址。IP地址和MAC地址一起将数据传输到特定的目标主机。</p>
-</li>
-<li><p>广播分组的目标IP地址的主机部分全为1，这意味着本地网络（广播域）中的所有主机都将接收并查看该分组。诸如ARP和DHCP等很多网络协议都使用广播。</p>
-<p>例如：</p>
-<p>C类网络192.168.1.0的默认子网掩码为255.255.255.0（掩码的255个数对应网络的网络地址个数），其广播地址为192.168.1.255，其主机部分为十进制数255或二进制数11111111（全为1）；</p>
-<p>B类网络172.16.0.0的默认子网掩码为255.255.0.0，其广播地址为172.16.255.255；</p>
-<p>A类网络10.0.0.0的默认子网掩码为255.0.0.0，其广播地址为10.255.255.255。</p>
-<p>在以太网帧中，必须包含与广播IP地址对应的广播MAC地址。在以太网中，广播MAC地址长48位，其十六进制表示为FF-FF-FF-FF-FF-FF（全1为广播mac，主机地址为全1即广播ip地址）</p>
-</li>
-<li><p>多播地址让源设备能够将分组发送给一组设备。属于多播组的设备将被分配一个多播组IP地址，多播地址范围为224.0.0.0～239.255.255.255。由于多播地址表示一组设备（有时被称为主机组），因此只能用作分组的目标地址，源地址总是为单播地址。</p>
-</li>
-</ul>
-</blockquote>
-<p>因此，任何第一个字节大于223小于240的IP地址是多点广播地址；IP地址中的每一个字节都为0的地址（“0.0.0.0”）对应于当前主机；IP地址中的每一个字节都为1的IP地址（“255．255．255．255”）是当前子网的广播地址；IP地址中凡是以“llll0”的地址都留着将来作为特殊用途使用；IP地址中不能以十进制“127”作为开头，127.0.0.1是回送地址，指本地机，一般用来测试使用。回送地址（127.x.x.x）是本机回送地址（Loopback Address）,即主机IP堆栈内部的IP地址，主要用于网络软件测试以及本地机进程间通信，无论什么程序，一旦使用回送地址发送数据，协议软件立即返回之，不进行任何网络传输。 属于保留测试地址,不能用，同时网络ID的第一个6位组也不能全置为“0”，全“0”表示本地网络。   D 类和 E 类用于组播和保留地址。</p>
-<h4 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h4><p>未完待续……</p>
+                <p>之前用过一个百度文库在线下载文档的网站，非常好用，除了付费购买的不能下载之外其他的都可以下载，所以在这里安利一下。</p>
+<p>网址：<a href="http://www.blpack.com/" target="_blank" rel="noopener">http://www.blpack.com/</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -475,7 +425,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://createcode.club/2019/11/05/%E7%BB%86%E8%AF%B4ip/">http://createcode.club/2019/11/05/%E7%BB%86%E8%AF%B4ip/</a>
+                    <a href="http://createcode.club/2019/12/19/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E6%96%87%E6%A1%A3%E4%B8%8B%E8%BD%BD/">http://createcode.club/2019/12/19/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93%E6%96%87%E6%A1%A3%E4%B8%8B%E8%BD%BD/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -513,12 +463,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ip/">
-                                    <span class="chip bg-color">ip</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%B1%80%E5%9F%9F%E7%BD%91/">
-                                    <span class="chip bg-color">局域网</span>
+                                <a href="/tags/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93/">
+                                    <span class="chip bg-color">百度文库</span>
                                 </a>
                             
                         </div>
@@ -686,7 +632,7 @@
         repo: 'shaowei666.github.io',
         owner: 'shaowei666',
         admin: "shaowei666",
-        id: '2019-11-05T18-52-12',
+        id: '2019-12-19T22-26-20',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -711,6 +657,61 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2019/12/20/git%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="git详细步骤">
+                        
+                        <span class="card-title">git详细步骤</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            基本用法
+
+上面的四条命令在工作目录、暂存目录(也叫做索引)和仓库之间复制文件
+
+git add files 把当前文件放入暂存区域
+git commit 给暂存区域生成快照并提交
+git reset – files 用来撤销最后一次git
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2019/12/12/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E4%B8%80%E4%B8%AAURL%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/">
                     <div class="card-image">
                         
@@ -731,9 +732,9 @@ HTTP请求发送
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -759,55 +760,6 @@ HTTP请求发送
                     
                     <a href="/tags/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/">
                         <span class="chip bg-color">页面渲染</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/11/01/%E5%89%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="前向代理与反向代理">
-                        
-                        <span class="card-title">前向代理与反向代理</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            基本概念   代理顾名思义就是自己不去干一件事，让别人帮你去干。同样的，我们在网络上访问一些服务时也需要通过代理去完成，比如有天你想要看某某hub,但是你在China时看不到的，所以此时你便需要一个国外的代理服务器代理你去访问，然后将结果返
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-01
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-category">
-                                    服务器
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E4%BB%A3%E7%90%86/">
-                        <span class="chip bg-color">代理</span>
                     </a>
                     
                 </div>
