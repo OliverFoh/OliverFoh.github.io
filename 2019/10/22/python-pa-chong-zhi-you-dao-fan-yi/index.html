@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="哈夫曼树及哈夫曼编码详解, MR.Chopstics">
-    <meta name="description" content="基本概念哈夫曼编码
-在讲哈夫曼树之前先来介绍一下哈夫曼编码的概念。在信息编码、数据压缩等方面，我们总是希望编码能够尽可能的简短一点，如此才能节省空间，提高传输效率。例如：如果采用等长编码的话编码’abcd’,则为00，01，10，11，此时">
+    <meta name="keywords" content="python爬虫之有道翻译, MR.Chopstics">
+    <meta name="description" content="前言自从学了python之后，终于明白了那句“人生苦短，我用python”是什么意思了，哈哈，废话不多说，下文正式开始模拟用户翻译过程。
+审查请求元素我们在浏览网站时，往往会需要从网站服务器上请求或者向网站服务器提交一些数据，此时我们的浏览">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>哈夫曼树及哈夫曼编码详解 | MR.Chopstics</title>
+    <title>python爬虫之有道翻译 | MR.Chopstics</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,13 +203,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        哈夫曼树及哈夫曼编码详解
+                        python爬虫之有道翻译
                     </div>
                 </div>
             </div>
@@ -319,13 +319,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/">
-                                <span class="chip bg-color">哈夫曼树</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -333,8 +329,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                数据结构
+                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
+                                爬虫
                             </a>
                         
                     </div>
@@ -346,7 +342,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-10-25
+                    2019-10-22
                 </div>
                 
 
@@ -355,14 +351,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    772
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    3 分
                 </div>
                 
 				
@@ -378,112 +374,42 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h3><blockquote>
-<p>在讲哈夫曼树之前先来介绍一下哈夫曼编码的概念。在信息编码、数据压缩等方面，我们总是希望编码能够尽可能的简短一点，如此才能节省空间，提高传输效率。例如：如果采用等长编码的话编码’abcd’,则为00，01，10，11，此时占据8bit的空间，况且各个字符出现的频率还都为一次，如果出现多次则会效率很低；如果采用不等长编码的话则可以为：0，10，110，111，大家肯定会有一个问题：为什么要写成这种形式呢？如果我分别编码为0，1，00，01的话可以吗？那么假如编码串为”001011”的话计算机便不能进行唯一的解码了，因为此时可能的结果有’aababb’,’addb’,’cbdb’,因此如果没有分隔符标注的话便会产生歧义。所以此时引入了一个<strong>前缀编码</strong>的概念——<strong>同一字符集中任何一个字符的编码都不是另外一个字符编码的前缀（最左字串），这种编码称为前缀编码。</strong></p>
-</blockquote>
-<hr>
-<p>在真正压缩的时候我们希望出现频率高的字符所占用较小的编码长度，如果之前你学过离散数学的话应该会听过<strong>最优二叉树</strong>的概念，即让权值小的元素靠近根结点，哈夫曼树便是这个原理。</p>
-<h3 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h3><blockquote>
-<p>路径：从树中一个结点到另一个结点之间的分支序列构成两个结点间的路径。</p>
-<p>路径长度：路径上分支的条数称为路径长度。</p>
-<p>树的路径长度：从树根到每个结点的路径长度之和称为树的路径长度。</p>
-<p>结点的权：给树中结点赋予一个数值，该数值称为结点的权。</p>
-<p>带权路径长度：结点到树根间的路径长度与结点权的乘积，称为该结点的带权路径长度。</p>
-<p>树的带权路径长度：树中所有叶子结点的带权路径长度之和，称为树的带权路径长度，通常记为WPL</p>
-<p>​                                                          <img src="https://private.codecogs.com/gif.latex?WPL%3D%20%5Csum_%7Bk%3D1%7D%5E%7Bn%7DW_%7Bk%7D*L_%7Bk%7D" alt=""></p>
-<p>注：n为叶子结点个数（所要编码的字符数）</p>
-</blockquote>
-<p>在这里，最优二叉树的写法不在赘述，具体可参考：<a href="https://jingyan.baidu.com/article/380abd0a717c061d90192ca2.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/380abd0a717c061d90192ca2.html</a></p>
-<h2 id="哈夫曼树的建立与编译码"><a href="#哈夫曼树的建立与编译码" class="headerlink" title="哈夫曼树的建立与编译码"></a>哈夫曼树的建立与编译码</h2><h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p>哈夫曼树中没有度为1的结点，故n个叶子的哈夫曼树，恰有n-1个度为2的结点，所以哈夫曼树共有2n-1个结点，可以存储在一个大小为2n-1的一维数组中。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Weight</td>
-<td>Parent</td>
-<td>Lchild</td>
-<td>Rchild</td>
-</tr>
-</tbody></table>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//结构声明</span>
-<span class="token keyword">typedef</span> <span class="token keyword">struct</span> point
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> weight<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//权值</span>
-    <span class="token keyword">int</span> parent<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//父节点下标</span>
-    <span class="token keyword">char</span> data<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//编码字母</span>
-    <span class="token keyword">int</span> code<span class="token punctuation">;</span>       
-    <span class="token keyword">int</span> lchild<span class="token punctuation">,</span>rchild<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>HuffmanNode<span class="token punctuation">;</span></code></pre>
-<h3 id="建立哈夫曼树"><a href="#建立哈夫曼树" class="headerlink" title="建立哈夫曼树"></a>建立哈夫曼树</h3><p>​     1.在建立前我们需要对每个字符求其权值，在这里我们以字符出现的频度作为权值的衡量标准。</p>
-<pre class=" language-cpp"><code class="language-cpp">HuffmanNode <span class="token operator">*</span><span class="token function">Compute_weight</span><span class="token punctuation">(</span>HuffmanNode <span class="token operator">*</span>p<span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">//计算权值</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>p<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>weight<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt=""></p>
-<p>   2.利用其权值大小创建哈夫曼树</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">Build_HuffmanTree</span><span class="token punctuation">(</span>HuffmanNode <span class="token operator">*</span>p<span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">//建立哈夫曼树</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> s1<span class="token punctuation">,</span>s2<span class="token punctuation">,</span><span class="token operator">*</span>min<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span><span class="token number">2</span><span class="token operator">*</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        min<span class="token operator">=</span><span class="token function">SearchMinNumbers</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span>i<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        s1<span class="token operator">=</span><span class="token operator">*</span>min<span class="token punctuation">;</span>
-        s2<span class="token operator">=</span><span class="token operator">*</span><span class="token punctuation">(</span>min<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>weight<span class="token operator">=</span>p<span class="token punctuation">[</span>s1<span class="token punctuation">]</span><span class="token punctuation">.</span>weight<span class="token operator">+</span>p<span class="token punctuation">[</span>s2<span class="token punctuation">]</span><span class="token punctuation">.</span>weight<span class="token punctuation">;</span>
-        p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lchild<span class="token operator">=</span>s1<span class="token punctuation">;</span>
-        p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>rchild<span class="token operator">=</span>s2<span class="token punctuation">;</span>
-        p<span class="token punctuation">[</span>s1<span class="token punctuation">]</span><span class="token punctuation">.</span>parent<span class="token operator">=</span>i<span class="token punctuation">;</span>
-        p<span class="token punctuation">[</span>s2<span class="token punctuation">]</span><span class="token punctuation">.</span>parent<span class="token operator">=</span>i<span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt=""></p>
-<p>3.哈夫曼树编码</p>
-<p>​      此时我们规定左分支表示‘0’，右分支表示‘1’，用根结点到叶子结点路径上的分支符号组成的串，作为叶子节点字符的编码，这就是哈夫曼编码。</p>
-<pre class=" language-cpp"><code class="language-cpp">HuffmanNode <span class="token function">ResolveHuffmanCode</span><span class="token punctuation">(</span>HuffmanNode <span class="token operator">*</span>p<span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">//打印字符编码</span>
-<span class="token punctuation">{</span>
-    HuffmanNode ptemp<span class="token punctuation">;</span>
-    <span class="token keyword">char</span> <span class="token operator">*</span>code<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> start<span class="token punctuation">,</span>pre<span class="token punctuation">;</span>
-    code<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">mallco</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token operator">*</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    code<span class="token punctuation">[</span>n<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'\0'</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        start<span class="token operator">=</span>n<span class="token number">-1</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-        ptemp<span class="token operator">=</span>i<span class="token punctuation">;</span>
-        pre<span class="token operator">=</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>parent<span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>pre<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>pre<span class="token punctuation">]</span><span class="token punctuation">.</span>lchild<span class="token operator">==</span>ptemp<span class="token punctuation">)</span>
-                code<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'0'</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span>
-                code<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'1'</span><span class="token punctuation">;</span>
-            ptemp<span class="token operator">=</span>pre<span class="token punctuation">;</span>
-            pre<span class="token operator">=</span>p<span class="token punctuation">[</span>ptemp<span class="token punctuation">]</span><span class="token punctuation">.</span>parent<span class="token punctuation">;</span>
-            start<span class="token operator">--</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt=""></p>
-<p>4.哈夫曼树译码</p>
-<p>哈夫曼译码过程较为简单，可按照编码表采用朴素字符串比对的方法进行解码，但是建议采用KMP算符进行字符串匹配，效率较高</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自从学了python之后，终于明白了那句“人生苦短，我用python”是什么意思了，哈哈，废话不多说，下文正式开始模拟用户翻译过程。</p>
+<h2 id="审查请求元素"><a href="#审查请求元素" class="headerlink" title="审查请求元素"></a>审查请求元素</h2><p>我们在浏览网站时，往往会需要从网站服务器上请求或者向网站服务器提交一些数据，此时我们的浏览器主要向服务器发送get请求来获取数据，或者发送post请求来提交数据，简而言之，我们可以将这样的用户使用情景模拟出来，下面以有道翻译为例：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190206164514445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>在图中可以看到，当用户点击翻译按钮时，浏览器会自动以form_data的形式向服务器发起post请求，发送一些翻译需要的信息，而服务器在接受到请求后会对该请求进行校验，如果检测到是以代码程序的形式进行请求则会进行限制（这个事实上我们填写headers就ok了），或者同一个ip在短时间内大量访问就会被直接封掉（这个问题我们此时不考虑）。在识别为合法的请求后服务器会将结果返回客户端，一般情况下都是json格式</p>
+<p><img src="https://img-blog.csdnimg.cn/2019020617113187.png" alt=""></p>
+<p>此时我们将相关信息提取出来copy到代码里。</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request  <span class="token comment" spellcheck="true">#导入模块</span>
+<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>parse
+<span class="token keyword">import</span> json
+content<span class="token operator">=</span>input<span class="token punctuation">(</span><span class="token string">"请输入要翻译的内容："</span><span class="token punctuation">)</span>
+head<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span>   <span class="token comment" spellcheck="true">#请求头信息</span>
+head<span class="token punctuation">[</span><span class="token string">'User-Agent'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36'</span>
+url<span class="token operator">=</span><span class="token string">'http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule'</span>
+data<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span>    <span class="token comment" spellcheck="true">#请求表单</span>
+data<span class="token punctuation">[</span><span class="token string">'i'</span><span class="token punctuation">]</span><span class="token operator">=</span>content
+data<span class="token punctuation">[</span><span class="token string">'from'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'AUTO'</span>
+data<span class="token punctuation">[</span><span class="token string">'to'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'AUTO'</span>
+data<span class="token punctuation">[</span><span class="token string">'smartresult'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'dict'</span>
+data<span class="token punctuation">[</span><span class="token string">'client'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'fanyideskweb'</span>
+data<span class="token punctuation">[</span><span class="token string">'salt'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'15494388925757'</span>
+data<span class="token punctuation">[</span><span class="token string">'sign'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'00b84e93f30570e331c01318f59a47f0'</span>
+data<span class="token punctuation">[</span><span class="token string">'ts'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'1549438892575'</span>
+data<span class="token punctuation">[</span><span class="token string">'bv'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'e40fbeed3cd61fe519ae6051fcce0429'</span>
+data<span class="token punctuation">[</span><span class="token string">'doctype'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'json'</span>
+data<span class="token punctuation">[</span><span class="token string">'version'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'2.1'</span>
+data<span class="token punctuation">[</span><span class="token string">'keyfrom'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'fanyi.web'</span>
+data<span class="token punctuation">[</span><span class="token string">'action'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'FY_BY_CLICKBUTTION'</span>
+data<span class="token punctuation">[</span><span class="token string">'typoResult'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'false'</span>
+data<span class="token operator">=</span>urllib<span class="token punctuation">.</span>parse<span class="token punctuation">.</span>urlencode<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+req<span class="token operator">=</span>urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token punctuation">,</span>data<span class="token punctuation">,</span>head<span class="token punctuation">)</span>
+response<span class="token operator">=</span>urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+html<span class="token operator">=</span>response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+trans<span class="token operator">=</span>json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>html<span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#加载为json字典对象</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"翻译结果:"</span><span class="token punctuation">,</span>trans<span class="token punctuation">[</span><span class="token string">'translateResult'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'tgt'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p>url信息我们在post请求中就可以找到，需要注意的是有道翻译的url里边有’_o’的话去掉，应该是对接口进行了升级，我们用旧的接口就好了，data是一个字典，我们直接将form表单中元素copy过来就好了，在这里我们也可以不使用head，直接对url进行请求，但是此种做法容易使得服务器判断出来是机器在爬取而被直接屏蔽，因此我们最好配置user-agent信息。此外<strong>req=urllib.request.Request(url,data,head)</strong>使用了request类，来对我们的请求头进行包装，为请求增加了head信息，使得爬虫更加安全，<strong>但是最安全的方法则是控制访问的时间或者使用代理ip.</strong></p>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="https://img-blog.csdnimg.cn/20190206170647280.png" alt=""></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -527,7 +453,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="www.createcode.club/2019/10/25/ha-fu-man-shu-ji-ha-fu-man-bian-ma-xiang-jie/">www.createcode.club/2019/10/25/ha-fu-man-shu-ji-ha-fu-man-bian-ma-xiang-jie/</a>
+                    <a href="www.createcode.club/2019/10/22/python-pa-chong-zhi-you-dao-fan-yi/">www.createcode.club/2019/10/22/python-pa-chong-zhi-you-dao-fan-yi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -564,11 +490,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/">
-                                    <span class="chip bg-color">哈夫曼树</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -734,7 +656,7 @@
         repo: 'shaowei666.github.io',
         owner: 'shaowei666',
         admin: "shaowei666",
-        id: '2019-10-25T12-22-37',
+        id: '2019-10-22T11-14-01',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -759,36 +681,32 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/31/python-zhong-yin-yong-wen-jian-de-fang-fa/">
+                <a href="/2019/10/25/ha-fu-man-shu-ji-ha-fu-man-bian-ma-xiang-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="python中引用文件的方法">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="哈夫曼树及哈夫曼编码详解">
                         
-                        <span class="card-title">python中引用文件的方法</span>
+                        <span class="card-title">哈夫曼树及哈夫曼编码详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言
-在程序中引用文件无非是通过两种方式——绝对路径与相对路径，但是前者往往因为文件目录的改动而造成引用错误，因此我们大多采用相同路径的文件来引用文件。
-例如，我们当前的目录结构是这样的
----GUI
-    ---test
-       
+                            基本概念哈夫曼编码
+在讲哈夫曼树之前先来介绍一下哈夫曼编码的概念。在信息编码、数据压缩等方面，我们总是希望编码能够尽可能的简短一点，如此才能节省空间，提高传输效率。例如：如果采用等长编码的话编码’abcd’,则为00，01，10，11，此时
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-31
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-25
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category">
-                                    Python
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
                                 </a>
                             
                             
@@ -798,8 +716,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/">
+                        <span class="chip bg-color">哈夫曼树</span>
                     </a>
                     
                 </div>
@@ -813,37 +731,50 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/22/python-pa-chong-zhi-you-dao-fan-yi/">
+                <a href="/2019/10/21/java-gou-zao-qi-diao-yong-shun-xu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="python爬虫之有道翻译">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="java构造器调用顺序">
                         
-                        <span class="card-title">python爬虫之有道翻译</span>
+                        <span class="card-title">java构造器调用顺序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言自从学了python之后，终于明白了那句“人生苦短，我用python”是什么意思了，哈哈，废话不多说，下文正式开始模拟用户翻译过程。
-审查请求元素我们在浏览网站时，往往会需要从网站服务器上请求或者向网站服务器提交一些数据，此时我们的浏览
+                            前言今天在看书的时候，看到了关于继承的知识，突然觉得之前的理解还是不够，就想着把学到的关于构造器的知识记录下来
+概念相信大部分人都知道java里边的构造器在做一件什么样的事———创建实例对象时进行初始化，比如：
+public class T
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-21
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
-                                    爬虫
+                            <a href="/categories/java/" class="post-category">
+                                    java
                                 </a>
                             
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9E%84%E9%80%A0%E5%99%A8/">
+                        <span class="chip bg-color">构造器</span>
+                    </a>
+                    
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
                 </div>
                 
             </div>
