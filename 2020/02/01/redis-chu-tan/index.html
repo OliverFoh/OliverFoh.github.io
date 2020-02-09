@@ -4,12 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="简单TCP服务器构建, MR.Chopstics">
-    <meta name="description" content="一.基本概念
-Socket(套接字）
-
-
- socket是一种操作系统提供的进程间通信机制。[1] 在操作系统中，通常会为应用程序提供一组应用程序接口（API），称为套接字接口（英语：socket API）。应用程序可以通过套接字接口，来使">
+    <meta name="keywords" content="redis初探, MR.Chopstics">
+    <meta name="description" content="
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if (!el.dataset.src) { return">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@ Socket(套接字）
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>简单TCP服务器构建 | MR.Chopstics</title>
+    <title>redis初探 | MR.Chopstics</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -206,13 +205,13 @@ Socket(套接字）
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580402054139&di=a091cbfe36d8ff434cce8af330790962&imgtype=0&src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20130904%2F20130904125750-462507766.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        简单TCP服务器构建
+                        redis初探
                     </div>
                 </div>
             </div>
@@ -322,25 +321,12 @@ Socket(套接字）
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/TCP/">
-                                <span class="chip bg-color">TCP</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-category">
-                                服务器
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -349,7 +335,7 @@ Socket(套接字）
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-01
+                    2020-02-01
                 </div>
                 
 
@@ -358,14 +344,14 @@ Socket(套接字）
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    52
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 				
@@ -381,24 +367,7 @@ Socket(套接字）
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一-基本概念"><a href="#一-基本概念" class="headerlink" title="一.基本概念"></a>一.基本概念</h2><ul>
-<li><strong>Socket(套接字）</strong></li>
-</ul>
-<blockquote>
-<p> socket是一种操作系统提供的进程间通信机制。[1] 在操作系统中，通常会为应用程序提供一组应用程序接口（API），称为套接字接口（英语：socket API）。应用程序可以通过套接字接口，来使用网络套接字，以进行数据交换。最早的套接字接口来自于4.2 BSD，因此现代常见的套接字接口大多源自Berkeley套接字（Berkeley sockets）标准。在套接字接口中，以IP地址及通信端口组成套接字地址（socket address）。远程的套接字地址，以及本地的套接字地址完成连线后，再加上使用的协议（protocol），这个五元组（five-element tuple），作为套接字对（socket pairs），之后就可以彼此交换数据。例如，在同一台计算机上，TCP协议与UDP协议可以同时使用相同的port而互不干扰。<br>  操作系统根据套接字地址，可以决定应该将数据送达特定的行程或线程。这就像是电话系统中，以电话号码加上分机号码，来决定通话对象一般。<br> 材料来源：维基百科 </p>
-</blockquote>
-<p> 套接字顾名思义就是像插座一样起到了套接的作用。我们知道当不同的两台计算机进行通信时，需要通过彼此的ip地址进行寻址通信，但是计算机上面运行的软件很多，比如在你开微信的时候还听着歌，那么不同的应用程序进行通信时是如何做到互不影响的呢？这就是端口的用途，或许你觉得你可能用不到这个玩意，当你在网上输入任意一个网址时，浏览器都默认给网址的最后加上<strong>80(http协议通信默认端口)</strong>,程序便可以通过端口进行通信，传递信息。</p>
-<ul>
-<li><strong>TCP协议</strong><br> TCP为传输控制协议，我们所遇到的大部分通信都是基于TCP协议的可靠通信，TCP连接之所以可靠是因为TCP建立的是长连接，创建TCP连接时，主动发起连接的叫客户端，被动响应连接的叫服务器。<h2 id="二-实现原理"><a href="#二-实现原理" class="headerlink" title="二.实现原理"></a>二.实现原理</h2><ul>
-<li><strong>创建socket</strong><br><img src="https://img-blog.csdnimg.cn/20190513171805553.png" alt=""><br>在这里我们直接导入socket模块，然后创建socket对象，socket类初始化时需要赋参数，因为我们这里创建的是TCP服务，所以就不应改动，如果创建Udp服务时则应该改为family=AF_INET,type=SOCK_DGRAM</li>
-</ul>
-</li>
-</ul>
-<p> <strong>socket类构建方法参数类型</strong><br><img src="https://img-blog.csdnimg.cn/20190513172445518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70" alt=""></p>
-<ul>
-<li><strong>客户端请求连接</strong><br>在这里为了简化，我直接使用socket测试工具进行连接，并发送数据‘hello’<br>accept()方法可以返回一个元组，为一个新的套接字与客户端ip地址与端口，之所以需要返回一个新的套接字是因为为了满足下一次的通信需要，如果使用一个套接字时那么当发送来别的请求时将无法继续监听，因为此时的socket正在使用，所以需要新建一个通信管道。<br><img src="https://img-blog.csdnimg.cn/20190513173044910.png" alt=""><h2 id="三-方法改进"><a href="#三-方法改进" class="headerlink" title="三.方法改进"></a>三.方法改进</h2>上面我们是从最底层建立TCP连接(即从建立最基本的socket开始),事实上在真正的开发中程序员很少去从最底层做，因为已经有了封装的比较好的类库，从而避免了重复造轮子，在这里我们将使用socketserver模块中的服务基类与请求处理基类实现该功能<br><img src="https://img-blog.csdnimg.cn/20190513174407801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70" alt=""><br>这样我们便不用去关心底层建立socket的细节，而只关心业务逻辑的处理，使用TCPServer类有一个缺陷，就是只能为一个客户端服务，是单线程的，当我们想要创建多线程连接时可以使用<strong>ThreadingTCPServer</strong>类来满足。<br>另外，当我们想要去调整底部的socket时可以设置参数<strong>bind_and_activate=False</strong><br><img src="https://img-blog.csdnimg.cn/2019051317493676.png" alt=""></li>
-</ul>
-<script>
+                <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -441,7 +410,7 @@ Socket(套接字）
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="www.createcode.club/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/">www.createcode.club/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/</a>
+                    <a href="www.createcode.club/2020/02/01/redis-chu-tan/">www.createcode.club/2020/02/01/redis-chu-tan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -478,11 +447,7 @@ Socket(套接字）
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/TCP/">
-                                    <span class="chip bg-color">TCP</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -648,7 +613,7 @@ Socket(套接字）
         repo: 'sujayfu.github.io',
         owner: 'sujayfu',
         admin: "sujayfu",
-        id: '2019-11-01T12-12-33',
+        id: '2020-02-01T23-13-55',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -669,49 +634,42 @@ Socket(套接字）
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/11/01/qian-xiang-dai-li-yu-fan-xiang-dai-li/">
+                <a href="/2020/02/01/redis-chu-tan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="前向代理与反向代理">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="redis初探">
                         
-                        <span class="card-title">前向代理与反向代理</span>
+                        <span class="card-title">redis初探</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基本概念   代理顾名思义就是自己不去干一件事，让别人帮你去干。同样的，我们在网络上访问一些服务时也需要通过代理去完成，比如有天你想要看某某hub,但是你在China时看不到的，所以此时你便需要一个国外的代理服务器代理你去访问，然后将结果返
+                            
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-11-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-01
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-category">
-                                    服务器
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Sujay
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E4%BB%A3%E7%90%86/">
-                        <span class="chip bg-color">代理</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -722,36 +680,34 @@ Socket(套接字）
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/31/python-zhong-yin-yong-wen-jian-de-fang-fa/">
+                <a href="/2020/01/30/chang-jian-pai-xu-suan-fa-zong-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="python中引用文件的方法">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="常见排序算法总结">
                         
-                        <span class="card-title">python中引用文件的方法</span>
+                        <span class="card-title">常见排序算法总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言
-在程序中引用文件无非是通过两种方式——绝对路径与相对路径，但是前者往往因为文件目录的改动而造成引用错误，因此我们大多采用相同路径的文件来引用文件。
-例如，我们当前的目录结构是这样的
----GUI
-    ---test
-       
+                            
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-30
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category">
-                                    Python
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
@@ -761,8 +717,8 @@ Socket(套接字）
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">快速排序</span>
                     </a>
                     
                 </div>

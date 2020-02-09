@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>redis初探</title>
+      <link href="/2020/02/01/redis-chu-tan/"/>
+      <url>/2020/02/01/redis-chu-tan/</url>
+      
+        <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>常见排序算法总结</title>
       <link href="/2020/01/30/chang-jian-pai-xu-suan-fa-zong-jie/"/>
       <url>/2020/01/30/chang-jian-pai-xu-suan-fa-zong-jie/</url>
@@ -11,6 +24,18 @@
         <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
+      <categories>
+          
+          <category> 数据结构与算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 快速排序 </tag>
+            
+        </tags>
       
     </entry>
     
