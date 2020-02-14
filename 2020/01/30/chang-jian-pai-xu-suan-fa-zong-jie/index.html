@@ -5,10 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="常见排序算法总结, MR.Chopstics">
-    <meta name="description" content="
-        document.querySelectorAll(&#39;.github-emoji&#39;)
-          .forEach(el =&gt; {
-            if (!el.dataset.src) { return">
+    <meta name="description" content="算法分类一般的，算法可分为两类：非线性时间比较类排序、线性时间非比较类排序
+非线性时间比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此称为非线性时间比较类排序。
+线性时间非比较类排序：不通过比较来决">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -327,6 +326,10 @@
                                 <span class="chip bg-color">快速排序</span>
                             </a>
                         
+                            <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+                                <span class="chip bg-color">插入排序</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -357,14 +360,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    52
+                    737
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 				
@@ -380,7 +383,90 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <script>
+                <h2 id="算法分类"><a href="#算法分类" class="headerlink" title="算法分类"></a>算法分类</h2><p>一般的，算法可分为两类：<strong>非线性时间比较类排序、线性时间非比较类排序</strong></p>
+<p><strong>非线性时间比较类排序</strong>：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此称为非线性时间比较类排序。</p>
+<p><strong>线性时间非比较类排序</strong>：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此称为线性时间非比较类排序。</p>
+<p>这里可能不太容易理解，下边直接放一张图便于理解。</p>
+<p><img src="https://i.loli.net/2020/02/11/sUGBuF9twD16gJ4.png" alt="排序算法分类"></p>
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><h3 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h3><h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+冒泡排序
+时间复杂度：o(n2)
+ */</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>data<span class="token punctuation">.</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//控制排序趟数（n个数排序n-1次就行，最后一次不用排，剩下的数就是最大或最小的数）</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>data<span class="token punctuation">.</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>i<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//控制每趟比较的次数，每趟比较的次数逐渐减少</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">></span>data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">int</span> temp<span class="token operator">=</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>temp<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+快速排序:递归分治思想（中间点为参考点，左边的值比中间值小，右边的值比中间值大，依此类推）
+ */</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">quickSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span><span class="token keyword">int</span> low<span class="token punctuation">,</span><span class="token keyword">int</span> high<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>low<span class="token operator">></span>high<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> l<span class="token operator">=</span>low<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> h<span class="token operator">=</span>high<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> basic<span class="token operator">=</span>data<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//基准参考点默认首元素</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>l<span class="token operator">!=</span>h<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>l<span class="token operator">&lt;</span>h <span class="token operator">&amp;&amp;</span> data<span class="token punctuation">[</span>h<span class="token punctuation">]</span><span class="token operator">>=</span>basic<span class="token punctuation">)</span><span class="token punctuation">{</span>      <span class="token comment" spellcheck="true">//从后向前比较</span>
+            h<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>l<span class="token operator">&lt;</span>h <span class="token operator">&amp;&amp;</span> data<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token operator">&lt;=</span>basic<span class="token punctuation">)</span><span class="token punctuation">{</span>      <span class="token comment" spellcheck="true">//从前向后比较</span>
+            l<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>l<span class="token operator">&lt;</span>h<span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//交换二者位置</span>
+            <span class="token keyword">int</span> temp<span class="token operator">=</span>data<span class="token punctuation">[</span>h<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">[</span>h<span class="token punctuation">]</span><span class="token operator">=</span>data<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token operator">=</span>temp<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//最终交换结束后参考值归位</span>
+    data<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token operator">=</span>data<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    data<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token operator">=</span>basic<span class="token punctuation">;</span>
+    <span class="token function">quickSort</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span>low<span class="token punctuation">,</span>l<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//继续处理左边的，这里是一个递归的过程</span>
+    <span class="token function">quickSort</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>high<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//继续处理右边的 ，这里是一个递归的过程</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="简单插入排序"><a href="#简单插入排序" class="headerlink" title="简单插入排序"></a>简单插入排序</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+插入排序:若key值前的元素比key值大，则将元素依次后移，知道比key值小时将key值插入该位置
+ */</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertionSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span>j<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>data<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> key<span class="token operator">=</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//key为待插入的值</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j<span class="token operator">=</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">>=</span><span class="token number">0</span> <span class="token operator">&amp;&amp;</span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">></span>key<span class="token punctuation">;</span>j<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>key<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h4><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+选择排序
+ */</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">selectionSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> min<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>temp<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>data<span class="token punctuation">.</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        min<span class="token operator">=</span>i<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//标记最小值的索引</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>data<span class="token punctuation">.</span>length<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">&lt;</span>data<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                min<span class="token operator">=</span>j<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        temp<span class="token operator">=</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>data<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        data<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token operator">=</span>temp<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h4 id="二路归并排序"><a href="#二路归并排序" class="headerlink" title="二路归并排序"></a>二路归并排序</h4><h4 id="多路归并排序"><a href="#多路归并排序" class="headerlink" title="多路归并排序"></a>多路归并排序</h4><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -463,6 +549,10 @@
                             
                                 <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
                                     <span class="chip bg-color">快速排序</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+                                    <span class="chip bg-color">插入排序</span>
                                 </a>
                             
                         </div>
@@ -679,8 +769,12 @@
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Sujay
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/redis/" class="post-category">
+                                    redis
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -875,7 +969,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">14.8k</span>&nbsp;字
+                class="white-color">15.6k</span>&nbsp;字
             
             <br>
             

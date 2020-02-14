@@ -4,8 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="前向代理与反向代理, MR.Chopstics">
-    <meta name="description" content="基本概念   代理顾名思义就是自己不去干一件事，让别人帮你去干。同样的，我们在网络上访问一些服务时也需要通过代理去完成，比如有天你想要看某某hub,但是你在China时看不到的，所以此时你便需要一个国外的代理服务器代理你去访问，然后将结果返">
+    <meta name="keywords" content="漫画图解HDFS原理, MR.Chopstics">
+    <meta name="description" content="写在前面HDFS(Hadoop Distributed File Syatem)中文名为Hadoop分布式文件系统,是属于Hadoop软件自带的分布式文件系统。
+系统构成与写数据过程
+
+
+读数据过程
+容错机制故障类型与故障检测
+
+读写故障处">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>前向代理与反向代理 | MR.Chopstics</title>
+    <title>漫画图解HDFS原理 | MR.Chopstics</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,13 +209,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://i.loli.net/2020/02/14/RDYNogHuGS8XxbQ.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        前向代理与反向代理
+                        漫画图解HDFS原理
                     </div>
                 </div>
             </div>
@@ -320,8 +327,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E4%BB%A3%E7%90%86/">
-                                <span class="chip bg-color">代理</span>
+                            <a href="/tags/HDFS/">
+                                <span class="chip bg-color">HDFS</span>
                             </a>
                         
                     </div>
@@ -332,8 +339,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-category">
-                                服务器
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6/" class="post-category">
+                                大数据组件
                             </a>
                         
                     </div>
@@ -345,7 +352,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-01
+                    2020-02-14
                 </div>
                 
 
@@ -354,14 +361,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    973
+                    146
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 				
@@ -377,34 +384,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>   代理顾名思义就是自己不去干一件事，让别人帮你去干。同样的，我们在网络上访问一些服务时也需要通过代理去完成，比如有天你想要看某某hub,但是你在China时看不到的，所以此时你便需要一个国外的代理服务器代理你去访问，然后将结果返回给你，然后你就可以嘿嘿嘿了。<br>   <img src="https://img-blog.csdnimg.cn/20190409162703561.gif" alt=""></p>
-<p>   在这里便是代理的一种应用，其实代理按照代理的方式一般可分为前向代理与反向代理</p>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
-<li><h3 id="前向代理"><a href="#前向代理" class="headerlink" title="前向代理"></a>前向代理</h3>  我们所见到的大部分情况都是前向代理，A客户端表面上与B服务器进行通信，但是事实上中间可能还经过了B服务器的转发，此时B服务器就起的是代理的作用，代理服务器是面向客户端的。刚开始我们所举的例子就属于前向代理范畴，通常用于访问某些服务受限时，起到了代理转发的作用。</li>
-<li><h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3>  反向代理我们可能见的并不多，但是却起到至关重要的作用，例如著名的Nginx服务器通常就起的是反向代理的作用。当你准备网上购物时，在浏览器地址栏输入taobao.com，域名地址经过DNS服务器解析后便可访问到对应的网站，这只是一个宏观上的过程，事实上在此过程中浏览器拿到服务器ip地址后便向服务器发送http请求，此时接受请求的就是nginx服务器(也可能是其他服务器，例如Apache等)，而nginx接收到请求后自己并不能处理请求，需要将请求转发到对应的web应用层进行处理，在进行完逻辑处理后，web应用层把请求返回给nginx,说：‘nginx，你可以把结果返回到客户端了’，nginx便乖乖的将结果返回到客户端，这便是反向代理在其中所起到的作用，隐匿了真正的业务逻辑层，提高了应用层安全性。<h5 id="主要功能："><a href="#主要功能：" class="headerlink" title="主要功能："></a>主要功能：</h5><ul>
-<li>对客户端隐藏服务器（集群）的IP地址</li>
-<li>安全：作为应用层防火墙，为网站提供对基于Web的攻击行为（例如DoS/DDoS）的防护，更容易排查恶意软件等</li>
-<li>为后端服务器（集群）统一提供加密和SSL加速（如SSL终端代理）</li>
-<li>负载均衡，若服务器集群中有负荷较高者，反向代理通过URL重写，根据连线请求从负荷较低者获取与所需相同的资源或备援</li>
-<li>对于静态内容及短时间内有大量访问请求的动态内容提供缓存服务<br>对一些内容进行压缩，以节约带宽或为网络带宽不佳的网络提供服务</li>
-<li>减速上传</li>
-<li>为在私有网络下（如局域网）的服务器集群提供NAT穿透及外网发布服务</li>
-<li>提供HTTP访问认证[2]</li>
-<li>突破互联网封锁（不常用，因为反向代理与客户端之间的连线不一定是加密连线，非加密连线仍有遭内容审查进而遭封禁的风险；此外面对针对域名的关键字过滤、DNS缓存污染/投毒攻击乃至深度数据包检测也无能为力）<h5 id="常见反向代理软件"><a href="#常见反向代理软件" class="headerlink" title="常见反向代理软件"></a>常见反向代理软件</h5></li>
-<li>Nginx、Tengine</li>
-<li>Apache HTTP Server</li>
-<li>Varnish cache</li>
-<li>Squid Cache</li>
-<li>Traffic Server</li>
-<li>HAProxy</li>
-<li>YXORP</li>
-<li>Polipo</li>
-<li>Privoxy</li>
-<li>IIS<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><a href="https://zh.m.wikipedia.org/zh-hans/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86" target="_blank" rel="noopener">维基百科-反向代理</a></li>
-</ul>
-</li>
-</ul>
-<p>​    </p>
+                <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>HDFS(Hadoop Distributed File Syatem)中文名为<strong>Hadoop分布式文件系统</strong>,是属于Hadoop软件自带的分布式文件系统。</p>
+<h2 id="系统构成与写数据过程"><a href="#系统构成与写数据过程" class="headerlink" title="系统构成与写数据过程"></a>系统构成与写数据过程</h2><p><img src="https://i.loli.net/2020/02/14/QOCDWm25eicsTjv.png" alt=""></p>
+<p><img src="https://i.loli.net/2020/02/14/I3p74sDhqT2Nj8H.png" alt=""></p>
+<p><img src="https://i.loli.net/2020/02/14/RDYNogHuGS8XxbQ.png" alt=""></p>
+<h2 id="读数据过程"><a href="#读数据过程" class="headerlink" title="读数据过程"></a>读数据过程</h2><p><img src="https://i.loli.net/2020/02/14/4XvIhEWnwOkNigM.png" alt=""></p>
+<h2 id="容错机制"><a href="#容错机制" class="headerlink" title="容错机制"></a>容错机制</h2><h3 id="故障类型与故障检测"><a href="#故障类型与故障检测" class="headerlink" title="故障类型与故障检测"></a>故障类型与故障检测</h3><p><img src="https://i.loli.net/2020/02/14/yiKtIUPvdZnFWqL.png" alt=""></p>
+<p><img src="https://i.loli.net/2020/02/14/tHK8SLTfgqYWIey.png" alt=""></p>
+<h3 id="读写故障处理"><a href="#读写故障处理" class="headerlink" title="读写故障处理"></a>读写故障处理</h3><p><img src="https://i.loli.net/2020/02/14/wXdpF5KfznIYC3N.png" alt=""></p>
+<h3 id="DataNode故障处理"><a href="#DataNode故障处理" class="headerlink" title="DataNode故障处理"></a>DataNode故障处理</h3><p><img src="https://i.loli.net/2020/02/14/yJ4qYcT9ns5OLfS.png" alt=""></p>
+<h3 id="副本布局策略"><a href="#副本布局策略" class="headerlink" title="副本布局策略"></a>副本布局策略</h3><p><img src="https://i.loli.net/2020/02/14/5MZveXQBN1oCYIG.png" alt=""></p>
+<blockquote>
+<p>参考文章：<a href="https://blog.csdn.net/hudiefenmu/article/details/37694503" target="_blank" rel="noopener">https://blog.csdn.net/hudiefenmu/article/details/37694503</a></p>
+</blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -448,7 +440,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="www.createcode.club/2019/11/01/qian-xiang-dai-li-yu-fan-xiang-dai-li/">www.createcode.club/2019/11/01/qian-xiang-dai-li-yu-fan-xiang-dai-li/</a>
+                    <a href="www.createcode.club/2020/02/14/man-hua-tu-jie-hdfs-ji-ben-yuan-li/">www.createcode.club/2020/02/14/man-hua-tu-jie-hdfs-ji-ben-yuan-li/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -486,8 +478,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E4%BB%A3%E7%90%86/">
-                                    <span class="chip bg-color">代理</span>
+                                <a href="/tags/HDFS/">
+                                    <span class="chip bg-color">HDFS</span>
                                 </a>
                             
                         </div>
@@ -655,7 +647,7 @@
         repo: 'sujayfu.github.io',
         owner: 'sujayfu',
         admin: "sujayfu",
-        id: '2019-11-01T12-23-03',
+        id: '2020-02-14T15-23-10',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -676,50 +668,54 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/11/05/xi-shuo-ip/">
+                <a href="/2020/02/14/man-hua-tu-jie-hdfs-ji-ben-yuan-li/">
                     <div class="card-image">
                         
+                        <img src="https://i.loli.net/2020/02/14/RDYNogHuGS8XxbQ.png" class="responsive-img" alt="漫画图解HDFS原理">
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="细说ip">
-                        
-                        <span class="card-title">细说ip</span>
+                        <span class="card-title">漫画图解HDFS原理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言在互联网中，每台计算机要实现通信的前提就是互相知道对方的地址，那么这个地址就是IP，通过IP地址我们可以很方便的在因特网上进行寻址。IP地址现在由因特网和数字分配机构ICANN(Internet Corporation for Assi
+                            写在前面HDFS(Hadoop Distributed File Syatem)中文名为Hadoop分布式文件系统,是属于Hadoop软件自带的分布式文件系统。
+系统构成与写数据过程
+
+
+读数据过程
+容错机制故障类型与故障检测
+
+读写故障处
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-11-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                    计算机网络
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6/" class="post-category">
+                                    大数据组件
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ip/">
-                        <span class="chip bg-color">ip</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%B1%80%E5%9F%9F%E7%BD%91/">
-                        <span class="chip bg-color">局域网</span>
+                    <a href="/tags/HDFS/">
+                        <span class="chip bg-color">HDFS</span>
                     </a>
                     
                 </div>
@@ -733,47 +729,39 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/">
+                <a href="/2020/02/01/redis-chu-tan/">
                     <div class="card-image">
                         
-                        <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1580402054139&amp;di=a091cbfe36d8ff434cce8af330790962&amp;imgtype=0&amp;src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20130904%2F20130904125750-462507766.jpg" class="responsive-img" alt="简单TCP服务器构建">
                         
-                        <span class="card-title">简单TCP服务器构建</span>
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="redis初探">
+                        
+                        <span class="card-title">redis初探</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一.基本概念
-Socket(套接字）
-
-
- socket是一种操作系统提供的进程间通信机制。[1] 在操作系统中，通常会为应用程序提供一组应用程序接口（API），称为套接字接口（英语：socket API）。应用程序可以通过套接字接口，来使
+                            
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-category">
-                                    服务器
+                            <a href="/categories/redis/" class="post-category">
+                                    redis
                                 </a>
                             
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/TCP/">
-                        <span class="chip bg-color">TCP</span>
-                    </a>
-                    
                 </div>
                 
             </div>
