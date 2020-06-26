@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>TCP拥塞窗口笔记</title>
+      <link href="/2020/06/26/tcp-yong-sai-chuang-kou-bi-ji/"/>
+      <url>/2020/06/26/tcp-yong-sai-chuang-kou-bi-ji/</url>
+      
+        <content type="html"><![CDATA[<h1 id="TCP拥塞窗口笔记"><a href="#TCP拥塞窗口笔记" class="headerlink" title="TCP拥塞窗口笔记"></a>TCP拥塞窗口笔记</h1><p><img src="https://i.loli.net/2020/06/26/8oluqnX16MsOYZj.png" alt="拥塞窗口变化曲线"></p><p><code>拥塞窗口</code> cwnd</p><p><code>慢启动门限</code> ssthresh （slow start threshold）状态变量。</p><ul><li>当 cwnd &lt; ssthresh 时，使用慢启动算法。</li><li>当 cwnd &gt;= ssthresh 时，就会使用「拥塞避免算法」</li></ul><p>这是一张关于传输轮次与拥塞窗口的关系图</p><p>可以看出，在第6传输轮次的时候，由慢开始算法变为拥塞避免算法，因而此刻的 ssthresh 门限 = cwnd 发送窗口为 64，因而初始门限值为64。</p><p>在15次的时候，因为发生了网络拥塞，进行乘法减小，继续拥塞避免加法增大，此时cwnd不减为1，而是变为原来一半，当前 sshthresh 门限=cwnd，报文的丢失是根据收到了三个重复的确认。</p><p>在第22次传输轮次时，发生网络拥塞，由拥塞避免恢复到慢开始算法，cwnd置为1，报文的丢失是根据超时重传检测的。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 拥塞窗口 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>漫画图解HDFS原理</title>
       <link href="/2020/02/14/man-hua-tu-jie-hdfs-ji-ben-yuan-li/"/>
       <url>/2020/02/14/man-hua-tu-jie-hdfs-ji-ben-yuan-li/</url>
