@@ -30,6 +30,8 @@ Socket(套接字）
     
     <script src="/libs/jquery/jquery.min.js"></script>
     
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -206,7 +208,7 @@ Socket(套接字）
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580402054139&di=a091cbfe36d8ff434cce8af330790962&imgtype=0&src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20130904%2F20130904125750-462507766.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/006SFsamly1gq23icjcqrj30yl0jh40e.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -358,7 +360,7 @@ Socket(套接字）
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1k
                 </div>
                 
 
@@ -389,34 +391,14 @@ Socket(套接字）
 </blockquote>
 <p> 套接字顾名思义就是像插座一样起到了套接的作用。我们知道当不同的两台计算机进行通信时，需要通过彼此的ip地址进行寻址通信，但是计算机上面运行的软件很多，比如在你开微信的时候还听着歌，那么不同的应用程序进行通信时是如何做到互不影响的呢？这就是端口的用途，或许你觉得你可能用不到这个玩意，当你在网上输入任意一个网址时，浏览器都默认给网址的最后加上<strong>80(http协议通信默认端口)</strong>,程序便可以通过端口进行通信，传递信息。</p>
 <ul>
-<li><strong>TCP协议</strong><br> TCP为传输控制协议，我们所遇到的大部分通信都是基于TCP协议的可靠通信，TCP连接之所以可靠是因为TCP建立的是长连接，创建TCP连接时，主动发起连接的叫客户端，被动响应连接的叫服务器。<h2 id="二-实现原理"><a href="#二-实现原理" class="headerlink" title="二.实现原理"></a>二.实现原理</h2><ul>
-<li><strong>创建socket</strong><br><img src="https://img-blog.csdnimg.cn/20190513171805553.png" alt=""><br>在这里我们直接导入socket模块，然后创建socket对象，socket类初始化时需要赋参数，因为我们这里创建的是TCP服务，所以就不应改动，如果创建Udp服务时则应该改为family=AF_INET,type=SOCK_DGRAM</li>
+<li><strong>TCP协议</strong><br> TCP为传输控制协议，我们所遇到的大部分通信都是基于TCP协议的可靠通信，TCP连接之所以可靠是因为TCP建立的是长连接，创建TCP连接时，主动发起连接的叫客户端，被动响应连接的叫服务器。<h2 id="二-实现原理"><a href="#二-实现原理" class="headerlink" title="二.实现原理"></a>二.实现原理</h2></li>
+<li><strong>创建socket</strong><br><img src="https://img-blog.csdnimg.cn/20190513171805553.png"><br>在这里我们直接导入socket模块，然后创建socket对象，socket类初始化时需要赋参数，因为我们这里创建的是TCP服务，所以就不应改动，如果创建Udp服务时则应该改为family=AF_INET,type=SOCK_DGRAM</li>
 </ul>
-</li>
-</ul>
-<p> <strong>socket类构建方法参数类型</strong><br><img src="https://img-blog.csdnimg.cn/20190513172445518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70" alt=""></p>
+<p> <strong>socket类构建方法参数类型</strong><br><img src="https://img-blog.csdnimg.cn/20190513172445518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70"></p>
 <ul>
-<li><strong>客户端请求连接</strong><br>在这里为了简化，我直接使用socket测试工具进行连接，并发送数据‘hello’<br>accept()方法可以返回一个元组，为一个新的套接字与客户端ip地址与端口，之所以需要返回一个新的套接字是因为为了满足下一次的通信需要，如果使用一个套接字时那么当发送来别的请求时将无法继续监听，因为此时的socket正在使用，所以需要新建一个通信管道。<br><img src="https://img-blog.csdnimg.cn/20190513173044910.png" alt=""><h2 id="三-方法改进"><a href="#三-方法改进" class="headerlink" title="三.方法改进"></a>三.方法改进</h2>上面我们是从最底层建立TCP连接(即从建立最基本的socket开始),事实上在真正的开发中程序员很少去从最底层做，因为已经有了封装的比较好的类库，从而避免了重复造轮子，在这里我们将使用socketserver模块中的服务基类与请求处理基类实现该功能<br><img src="https://img-blog.csdnimg.cn/20190513174407801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70" alt=""><br>这样我们便不用去关心底层建立socket的细节，而只关心业务逻辑的处理，使用TCPServer类有一个缺陷，就是只能为一个客户端服务，是单线程的，当我们想要创建多线程连接时可以使用<strong>ThreadingTCPServer</strong>类来满足。<br>另外，当我们想要去调整底部的socket时可以设置参数<strong>bind_and_activate=False</strong><br><img src="https://img-blog.csdnimg.cn/2019051317493676.png" alt=""></li>
+<li>   <strong>客户端请求连接</strong><br>在这里为了简化，我直接使用socket测试工具进行连接，并发送数据‘hello’<br>accept()方法可以返回一个元组，为一个新的套接字与客户端ip地址与端口，之所以需要返回一个新的套接字是因为为了满足下一次的通信需要，如果使用一个套接字时那么当发送来别的请求时将无法继续监听，因为此时的socket正在使用，所以需要新建一个通信管道。<br><img src="https://img-blog.csdnimg.cn/20190513173044910.png"><h2 id="三-方法改进"><a href="#三-方法改进" class="headerlink" title="三.方法改进"></a>三.方法改进</h2>上面我们是从最底层建立TCP连接(即从建立最基本的socket开始),事实上在真正的开发中程序员很少去从最底层做，因为已经有了封装的比较好的类库，从而避免了重复造轮子，在这里我们将使用socketserver模块中的服务基类与请求处理基类实现该功能<br><img src="https://img-blog.csdnimg.cn/20190513174407801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZfSVRfYm95,size_16,color_FFFFFF,t_70"><br>这样我们便不用去关心底层建立socket的细节，而只关心业务逻辑的处理，使用TCPServer类有一个缺陷，就是只能为一个客户端服务，是单线程的，当我们想要创建多线程连接时可以使用<strong>ThreadingTCPServer</strong>类来满足。<br>另外，当我们想要去调整底部的socket时可以设置参数<strong>bind_and_activate=False</strong><br><img src="https://img-blog.csdnimg.cn/2019051317493676.png"></li>
 </ul>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
             </div>
             <hr/>
 
@@ -431,7 +413,7 @@ Socket(套接字）
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="www.createcode.club" rel="external nofollow noreferrer">Oliver</a>
+                    <a href="http://example.com" rel="external nofollow noreferrer">Oliver</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -441,7 +423,7 @@ Socket(套接字）
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="www.createcode.club/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/">www.createcode.club/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/</a>
+                    <a href="http://example.com/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/">http://example.com/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -454,7 +436,7 @@ Socket(套接字）
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="www.createcode.club" target="_blank">Oliver</a>
+                    <a href="http://example.com" target="_blank">Oliver</a>
                     !
                 </span>
             </div>
@@ -908,7 +890,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">16.2k</span>&nbsp;字
+                class="white-color">15.4k</span>&nbsp;字
             
             <br>
             
@@ -982,7 +964,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             </span>
             
         </div>
-        <div class="col s12 m4 l4 social-link social-statis"><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/12/03/BlnLksxPcM5SXtV.png" ></a></div>
+        <div class="col s12 m4 l4 social-link social-statis"><a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="https://i.loli.net/2019/12/03/BlnLksxPcM5SXtV.png" ></a></div>
 
 
     </div>
