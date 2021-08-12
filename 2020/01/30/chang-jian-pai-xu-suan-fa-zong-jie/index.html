@@ -207,7 +207,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F301129-dba6aa55060bbe7d.png&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628067100&t=ac3ddc6b1c50a33ecc8224d6bcea1490')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -368,7 +368,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    685
+                    850
                 </div>
                 
 
@@ -434,7 +434,7 @@
     <span class="token function">quickSort</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>high<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//继续处理右边的 ，这里是一个递归的过程</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="简单插入排序"><a href="#简单插入排序" class="headerlink" title="简单插入排序"></a>简单插入排序</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
 插入排序:若key值前的元素比key值大，则将元素依次后移，知道比key值小时将key值插入该位置
  */</span>
 <span class="token annotation punctuation">@Override</span>
@@ -448,8 +448,48 @@
         data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>key<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+空间复杂度：<span class="token function">o</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+时间复杂度：
 </code></pre>
-<h4 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h4><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+<h4 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h4><pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">BinaryInsertSort</span><span class="token punctuation">(</span><span class="token keyword">int</span> A<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span>j<span class="token punctuation">,</span>low<span class="token punctuation">,</span>high<span class="token punctuation">,</span>mid<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        A<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        low<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>high<span class="token operator">=</span>i<span class="token number">-1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>low<span class="token operator">&lt;=</span>high<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            mid<span class="token operator">=</span><span class="token punctuation">(</span>low<span class="token operator">+</span>high<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>A<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token operator">></span>A<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                high<span class="token operator">=</span>mid<span class="token number">-1</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                low<span class="token operator">=</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>j<span class="token operator">=</span>i<span class="token number">-1</span><span class="token punctuation">;</span>j<span class="token operator">>=</span>high<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token operator">--</span>j<span class="token punctuation">)</span>
+            A<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>A<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        A<span class="token punctuation">[</span>high<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>A<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+空间复杂度：
+时间复杂度：最好：<span class="token function">O</span><span class="token punctuation">(</span>nlog2n<span class="token punctuation">)</span>
+          平均：<span class="token function">O</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h4><pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">shellSort</span><span class="token punctuation">(</span>ElemType A<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> dk<span class="token punctuation">,</span>i<span class="token punctuation">,</span>j<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>dk <span class="token operator">=</span> n<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span> dk<span class="token operator">>=</span><span class="token number">1</span><span class="token punctuation">;</span> dk<span class="token operator">=</span>dk<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span>dk<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;</span>A<span class="token punctuation">[</span>i<span class="token operator">-</span>dk<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                A<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token keyword">for</span><span class="token punctuation">(</span>j<span class="token operator">=</span>i<span class="token operator">-</span>dk<span class="token punctuation">;</span>j<span class="token operator">></span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>A<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">&lt;</span>A<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>j<span class="token operator">-</span><span class="token operator">=</span>dk<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    A<span class="token punctuation">[</span>j<span class="token operator">+</span>dk<span class="token punctuation">]</span><span class="token operator">=</span>A<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                A<span class="token punctuation">[</span>j<span class="token operator">+</span>dk<span class="token punctuation">]</span><span class="token operator">=</span>A<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
 选择排序
  */</span>
 <span class="token annotation punctuation">@Override</span>
@@ -977,7 +1017,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            什么是redisredis 是一个基于 C 语言编写，遵守开源 BSD 协议，支持持久化，完全开源免费的高性 能（key/value）内存型数据库。相比memcache而言，redis支持的数据类型更加广泛，而memcache只支持stri
+                            redis介绍redis 是一个基于 C 语言编写，遵守开源 BSD 协议，支持持久化，完全开源免费的高性 能（key-value）内存型数据库。相比memcache而言，redis支持的数据类型更加广泛，而memcache只支持strin
                         
                     </div>
                     <div class="publish-info">
@@ -1194,7 +1234,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">22.4k</span>&nbsp;字
             
             <br>
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

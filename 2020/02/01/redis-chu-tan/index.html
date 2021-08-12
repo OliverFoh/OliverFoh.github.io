@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="referrer" content="no-referrer" />
     <meta name="keywords" content="redis初探, 伟少的博客">
-    <meta name="description" content="什么是redisredis 是一个基于 C 语言编写，遵守开源 BSD 协议，支持持久化，完全开源免费的高性 能（key/value）内存型数据库。相比memcache而言，redis支持的数据类型更加广泛，而memcache只支持stri">
+    <meta name="description" content="redis介绍redis 是一个基于 C 语言编写，遵守开源 BSD 协议，支持持久化，完全开源免费的高性 能（key-value）内存型数据库。相比memcache而言，redis支持的数据类型更加广泛，而memcache只支持strin">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -362,7 +362,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    72
+                    892
                 </div>
                 
 
@@ -375,8 +375,75 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="什么是redis"><a href="#什么是redis" class="headerlink" title="什么是redis"></a>什么是redis</h1><p>redis 是一个基于 C 语言编写，遵守开源 BSD 协议，支持持久化，完全开源免费的高性 能（key/value）内存型数据库。相比memcache而言，redis支持的数据类型更加广泛，而memcache只支持string类型的字符串，</p>
-
+                <h2 id="redis介绍"><a href="#redis介绍" class="headerlink" title="redis介绍"></a>redis介绍</h2><p>redis 是一个基于 C 语言编写，遵守开源 BSD 协议，支持持久化，完全开源免费的高性 能（key-value）内存型数据库。相比memcache而言，redis支持的数据类型更加广泛，而memcache只支持string类型的字符串。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>在没有redis缓存的业务中，所有的数据读写请求都是通过数据库来完成，数据库每次读写都需要进行磁盘IO，在请求频率低的时候数据库尚能应付，若同时有大量的读写请求直接打在数据库上，将会对数据库造成巨大的压力。并且在真实的业务场景中多数都是读请求，数据的结果不经常发生变化，所以可以将这种数据放在内存上，每次从内存里边去拿数据，这样会比让数据库去进行磁盘IO快很多。因此，我们可以把访问频率高，且不经常更新的数据放在redis中，若需要对数据进行写操作，也可在redis中进行操作，然后再将操作结果同步到数据库中。</p>
+<p>redis有以下的常见应用场景：</p>
+<ul>
+<li><p>缓存</p>
+<p>对于一些用户经常访问的数据，可以将其直接缓存在redis中，避免了每次请求数据库的操作，减轻了数据库的负担。</p>
+</li>
+<li><p>排行榜</p>
+<p>redis中的SortedSet(有序集合)可以很方便的实现排行榜的功能，而使用关系型数据库来实现则会较为复杂。</p>
+</li>
+<li><p>简单消息队列</p>
+<p>在一些要求不高的场景中，可以使用redis中的订阅/发布功能来实现一个简单的消息队列，或者也可使用List数据结构来实现一个队列发送异步消息，比如到货通知、邮件通知等操作。</p>
+</li>
+<li><p>好友关系</p>
+<p>利用集合的一些命令，比如求交集、并集、差集等。可以方便搞定一些共同好友、共同爱好之类的功能。</p>
+</li>
+<li><p>计算器与限速器</p>
+<p>计算器主要是应用在一些统计点赞数、浏览数的操作中，如果使用关系型数据库来实现，那么每次读写数据库会造成非常大的磁盘IO负担，因此可以使用redis中原子性自增操作来实现；而限速器则是可以控制比如限定一个API的访问频率，以至于不会让系统造成过大压力。</p>
+</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li><p>String类型</p>
+<p>String是redis中最基本的数据类型，string 类型是二进制安全的，意思是 redis 的 string 可以包含任何数据，比如jpg图片或者序列化的对象。</p>
+</li>
+<li><p>ZSet</p>
+</li>
+<li><p>Hash</p>
+</li>
+<li><p>List</p>
+<p>List是简单的字符串列表，可以对列表进行插入和删除元素的操作。</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RPUSH</td>
+<td align="center">RPUSH key-name value1,value2…将一个或多个值压入列表右端</td>
+</tr>
+<tr>
+<td align="center">LPUSH</td>
+<td align="center">LPUSH key-name value1,value2…将一个或多个值压入列表左端</td>
+</tr>
+<tr>
+<td align="center">RPOP</td>
+<td align="center">RPOP key-name   移除并返回最右端的元素</td>
+</tr>
+<tr>
+<td align="center">LPOP</td>
+<td align="center">LPOP key-name   移除并返回最左端的元素</td>
+</tr>
+<tr>
+<td align="center">LINDEX</td>
+<td align="center">LINDEX key-name offset返回列表中偏移量为offset的元素</td>
+</tr>
+<tr>
+<td align="center">LRANGE</td>
+<td align="center">LRANGE key-name start end 返回列表中偏移量为start到end的所有元素（也包括start与end）</td>
+</tr>
+<tr>
+<td align="center">LTRIM</td>
+<td align="center">LTRIM key-name start end 对列表修剪，保留start到end内的所有元素（也包括start与end）</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h2 id="持久化机制"><a href="#持久化机制" class="headerlink" title="持久化机制"></a>持久化机制</h2><h4 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h4><h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><h2 id="常见异常"><a href="#常见异常" class="headerlink" title="常见异常"></a>常见异常</h2><h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3>
             </div>
             <hr/>
 
@@ -928,8 +995,7 @@
                 <a href="/2020/01/30/chang-jian-pai-xu-suan-fa-zong-jie/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="常见排序算法总结">
+                        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F301129-dba6aa55060bbe7d.png&amp;refer=http%3A%2F%2Fupload-images.jianshu.io&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1628067100&amp;t=ac3ddc6b1c50a33ecc8224d6bcea1490" class="responsive-img" alt="常见排序算法总结">
                         
                         <span class="card-title">常见排序算法总结</span>
                     </div>
@@ -1112,7 +1178,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">22.4k</span>&nbsp;字
             
             <br>
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

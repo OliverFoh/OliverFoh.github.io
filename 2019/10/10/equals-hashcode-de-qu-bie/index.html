@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="referrer" content="no-referrer" />
     <meta name="keywords" content="==、equals、hashcode的区别, 伟少的博客">
-    <meta name="description" content="==、equals、hashcode的区别 | 伟少的博客">
+    <meta name="description" content="​    许多人对于==，equals、hashcode的概念不能准确区分，主要是因为没明白这几个的使用情景，刚开始我看到这里的时候也是一头雾水，后来看到了《疯狂java讲义》的内容后顿时才觉得醍醐灌顶。
+==与equals的区别说到==与">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -205,7 +206,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffile.boxuegu.com%2F3cb22e8c4cf64d23819575c5a104d348.png&refer=http%3A%2F%2Ffile.boxuegu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628067475&t=1dab19a4e05fa3d8806b470c51dd1091')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -362,7 +363,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    685
                 </div>
                 
 
@@ -375,7 +376,56 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>​    许多人对于==，equals、hashcode的概念不能准确区分，主要是因为没明白这几个的使用情景，刚开始我看到这里的时候也是一头雾水，后来看到了《疯狂java讲义》的内容后顿时才觉得醍醐灌顶。</p>
+<h2 id="与equals的区别"><a href="#与equals的区别" class="headerlink" title="==与equals的区别"></a>==与equals的区别</h2><p>说到==与equals的区别就要先明白这两个的作用，当比较的变量类型是基本数据类型时，==与equals都比较的是其值的大小，当比较的变量类型是引用类型时，==比较的是对象的地址是否相同，而equals也是比较的是对象的地址，这是因为默认情况下都是调用<strong>Object类</strong>的equals方法，下面是Object类的equals方法。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">==</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>那么可不可以让equals方法不是比较对象的地址呢，答案是可以的，那么就需要对equals方法进行重写，<strong>String类</strong>就重写了equals方法，其重写逻辑如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span>Object anObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">==</span> anObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>anObject <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            String anotherString <span class="token operator">=</span> <span class="token punctuation">(</span>String<span class="token punctuation">)</span>anObject<span class="token punctuation">;</span>
+            <span class="token keyword">int</span> n <span class="token operator">=</span> value<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> anotherString<span class="token punctuation">.</span>value<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">char</span> v1<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+                <span class="token keyword">char</span> v2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> anotherString<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+                <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span>n<span class="token operator">--</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>v1<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> v2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                    i<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>在重写的equals方法中首先进行了如下步骤：</p>
+<ol>
+<li>A==B时，即A、B为同一个对象，直接返回true</li>
+<li>目标对象类型为String类的类或其派生类时继续比较，否则返回false</li>
+<li>比较两个字符串长度是否一致，长度一致时进行下一步比较，否则返回false</li>
+<li>将两个字符串对象的字符逐个进行比较，若全部相等时返回true，否则返回false</li>
+</ol>
+<h2 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h2><p>hashCode()方法返回的是一个数值，在java中采用了特定的哈希算法，从而保证了每个对象在内存中都存放在唯一的一个位置，Object类提供的默认实现保证每个对象的hash码不同（在对象的内存地址基础上经过特定算法返回一个hash码）。</p>
+<p>有以下结论：</p>
+<ol>
+<li>如果两个对象equals，Java运行时环境会认为他们的hashcode一定相等。 </li>
+<li>如果两个对象不equals，他们的hashcode有可能相等。 </li>
+<li>如果两个对象hashcode相等，他们不一定equals。 </li>
+<li>如果两个对象hashcode不相等，他们一定不equals。 </li>
+</ol>
+<p>在这里有两个重要的规范：</p>
+<ul>
+<li>若重写equals(Object obj)方法，有必要重写hashcode()方法，确保通过equals(Object obj)方法判断结果为true的两个对象具备相等的hashcode()返回值。</li>
+<li>如果equals(Object obj)返回false，即两个对象“不相同”，并不要求对这两个对象调用hashcode()方法得到两个不相同的数。</li>
+</ul>
+
             </div>
             <hr/>
 
@@ -872,8 +922,7 @@
                 <a href="/2019/10/21/java-gou-zao-qi-diao-yong-shun-xu/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="java构造器调用顺序">
+                        <img src="https://img0.baidu.com/it/u=230362111,2602614653&amp;fm=26&amp;fmt=auto&amp;gp=0.jpg" class="responsive-img" alt="java构造器调用顺序">
                         
                         <span class="card-title">java构造器调用顺序</span>
                     </div>
@@ -927,8 +976,7 @@ public class T
                 <a href="/2019/06/05/git-xiang-xi-bu-zou/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="git详细步骤">
+                        <img src="https://img1.baidu.com/it/u=1308806829,1155590890&amp;fm=26&amp;fmt=auto&amp;gp=0.jpg" class="responsive-img" alt="git详细步骤">
                         
                         <span class="card-title">git详细步骤</span>
                     </div>
@@ -1111,7 +1159,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.6k</span>&nbsp;字
+                class="white-color">22.4k</span>&nbsp;字
             
             <br>
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
