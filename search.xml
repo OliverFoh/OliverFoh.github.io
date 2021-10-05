@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>线程的虚假唤醒</title>
+      <link href="/2021/09/28/xian-cheng-de-xu-jia-huan-xing/"/>
+      <url>/2021/09/28/xian-cheng-de-xu-jia-huan-xing/</url>
+      
+        <content type="html"><![CDATA[<h2 id="什么是虚假唤醒？"><a href="#什么是虚假唤醒？" class="headerlink" title="什么是虚假唤醒？"></a>什么是虚假唤醒？</h2><p>首先摘录来自维基百科的解释：</p><blockquote><p>This means that when you wait on a condition variable, the wait may (occasionally) return when no thread specifically broadcast or signaled that condition variable. Spurious wakeups may sound strange, but on some multiprocessor systems, making condition wakeup completely predictable might substantially slow all condition variable operations. The race conditions that cause spurious wakeups should be considered rare.</p></blockquote><p>虚假唤醒的意思就是当一个阻塞的线程等待某个条件变量的发生时，其他线程在唤醒了该线程后因为又有其他的线程改变了条件变量，从而导致了被唤醒的线程在执行操作时发现条件变量并不满足。</p><p>在这里举一个通俗一点的例子：有A、B、C三个线程，A线程wait()操作后进入了阻塞状态，C线程在完成操作后条件变量达到了A线程要运行的条件，因此C进行notify()操作，此时A线程被唤醒，但是恰巧此刻B线程对条件变量进行了修改操作，而当A线程执行操作时发现此时的条件变量值已经不是被唤醒时候的值。</p><h2 id="虚假唤醒实例"><a href="#虚假唤醒实例" class="headerlink" title="虚假唤醒实例"></a>虚假唤醒实例</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">synchronized</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token keyword">if</span><span class="token punctuation">(</span>condition does not occur<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>        obj<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre><p>首先用synchronized同步锁锁定资源，当条件变量未发生时则执行wait()操作，wait()操作可以细分为三步：</p><ol><li>释放锁并阻塞</li><li>等待条件cond发生</li><li>获取通知后，竞争获取锁</li></ol><p>当条件变量满足时又会唤醒阻塞的线程。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>在if判断语句中只会对condition变量判断一次，这样会导致条件变量还有可能会发生变化，所以应该将if语句改写为while语句进行多次判断即可。</p><pre class=" language-java"><code class="language-java"><span class="token keyword">synchronized</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token keyword">while</span><span class="token punctuation">(</span>condition does not occur<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>        obj<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 多线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>多线程池化技术</title>
+      <link href="/2021/09/24/duo-xian-cheng-chi-hua-ji-zhu/"/>
+      <url>/2021/09/24/duo-xian-cheng-chi-hua-ji-zhu/</url>
+      
+        <content type="html"><![CDATA[<h2 id="什么是线程池"><a href="#什么是线程池" class="headerlink" title="什么是线程池"></a>什么是线程池</h2><p>随着集成电路技术的飞速发展，现代计算机CPU的核心数越来越多，这就为高并发编程提供了良好的硬件基础，在java中，并发编程主要是利用JUC包（java.util.concurrent）下的各种与并发有关的实现类和接口来实现。我们可以利用继承<strong>Thread</strong>类或者实现<strong>Runnable</strong>接口来创建多线程，但是随着项目场景的复杂，这种方式的缺点也逐渐凸显，使用以上的方式来来编写并发程序需要自己负责线程的创建、销毁、以及线程的调度等操作。</p><h2 id="线程池原理"><a href="#线程池原理" class="headerlink" title="线程池原理"></a>线程池原理</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 多线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>浅谈docker</title>
       <link href="/2021/07/14/qian-tan-docker/"/>
       <url>/2021/07/14/qian-tan-docker/</url>
@@ -429,6 +479,31 @@
         <tags>
             
             <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java中线程礼让</title>
+      <link href="/2019/09/15/sleep-yu-yield-de-qu-bie/"/>
+      <url>/2019/09/15/sleep-yu-yield-de-qu-bie/</url>
+      
+        <content type="html"><![CDATA[<h2 id="线程礼让机制"><a href="#线程礼让机制" class="headerlink" title="线程礼让机制"></a>线程礼让机制</h2><p>在多线程中常常需要进行线程之间的礼让，或者是某个线程需要等待另外一个线程的计算结果，或者是需要让某个线程暂停执行，通常可以使用wait()、sleep()、yield()、join()等方法实现。</p><h2 id="wait"><a href="#wait" class="headerlink" title="wait()"></a>wait()</h2><p>​        wait()方法常常与notify()及notifyAll()两个方法一起使用，这三个方法用于协调多个线程对共享数据的存取，所以必须在synchronized语句块内使用，也就是说，调用wait()，notify()和notifyAll()的任务在调用这些方法前必须拥有对象的锁。需要注意的是，它们都是Object类的方法，而不是Thread类的方法。<br>　　wait()方法与sleep()方法的不同之处在于，wait()方法会释放对象的“锁标志”。当调用某一对象的wait()方法后，会使当前线程暂停执行，并释放当前线程所持有的锁，接下来将当前线程放入对象等待池中，直到调用了notify()方法后，将从对象等待池中移出任意一个线程并放入锁标志等待池中，只有锁标志等待池中的线程可以获取锁标志，它们随时准备争夺锁的拥有权。当调用了某个对象的notifyAll()方法，会将对象等待池中的所有线程都移动到该对象的锁标志等待池。<br>　　除了使用notify()和notifyAll()方法，还可以使用带毫秒参数的wait(long timeout)方法，效果是在延迟timeout毫秒后，被暂停的线程将被恢复到锁标志等待池。<br>　　此外，wait()，notify()及notifyAll()只能在synchronized语句中使用，但是如果使用的是ReenTrantLock实现同步，该如何达到这三个方法的效果呢？解决方法是使用ReenTrantLock.newCondition()获取一个Condition类对象，然后Condition的await()，signal()以及signalAll()分别对应上面的三个方法。</p><h2 id="sleep"><a href="#sleep" class="headerlink" title="sleep()"></a>sleep()</h2><p>​        sleep()方法的作用是让当前的线程进行休眠操作，其参数为休眠时间，当执行sleep方法时，线程就会进入到阻塞状态，需要注意的是sleep()方法不会释放锁标志。 sleep 方法使当前运行中的线程睡眼一段时间，进入不可运行状态，这段时间的长短是由程序设定的。</p><h2 id="yield"><a href="#yield" class="headerlink" title="yield()"></a>yield()</h2><p>​        yield()方法和sleep()方法类似，也不会释放“锁标志”，区别在于，它没有参数，即yield()方法只是使当前线程重新回到可执行状态，所以执行yield()的线程有可能在进入到可执行状态后马上又被执行，另外yield()方法只能使同优先级或者高优先级的线程得到执行机会，这也和sleep()方法不同。</p><h2 id="wait-与sleep-的区别"><a href="#wait-与sleep-的区别" class="headerlink" title="wait()与sleep()的区别"></a>wait()与sleep()的区别</h2><ol><li>wait只能在同步（synchronize）环境中被调用，而sleep不需要。</li><li>进入wait状态的线程能够被notify和notifyAll线程唤醒，但是进入sleeping状态的线程不能被notify方法唤醒。</li><li>wait通常有条件地执行，线程会一直处于wait状态，直到某个条件变为真，但是sleep仅仅让你的线程进入睡眠状态。</li><li>wait方法在进入wait状态的时候会释放对象的锁，但是sleep方法不会。</li><li>wait方法是针对一个被同步代码块加锁的对象，而sleep是针对一个线程。</li></ol><h2 id="sleep-与yield-的区别"><a href="#sleep-与yield-的区别" class="headerlink" title="sleep()与yield()的区别"></a>sleep()与yield()的区别</h2><ol><li>sleep方法会给其他线程运行的机会，而不考虑其他线程的优先级，因此会给较低优先级的一个运行的机会，yield方法只会给相同优先级或者更高优先级的线程一个运行的机会。</li><li>当线程执行了sleep方法后，将转到阻塞状态，参数millis指定睡眠时间，当线程执行yield方法后，将转到就绪状态。</li><li>sleep方法声明抛出InterruptedException异常，而yield方法没有声明抛出任何异常。</li><li>sleep方法比yield方法具有更好的可移植性，不能优先yield()方法来提高程序的并发性能，对于大多数程序员来说，yield方法的惟一用途是在测试期间人为地提高程序的并发性能，以帮助发现一些隐藏的错误。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 多线程 </tag>
             
         </tags>
       
