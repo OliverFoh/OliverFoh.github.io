@@ -5,13 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="referrer" content="no-referrer" />
-    <meta name="keywords" content="python中引用文件的方法, 伟少的博客">
-    <meta name="description" content="前言
-在程序中引用文件无非是通过两种方式——绝对路径与相对路径，但是前者往往因为文件目录的改动而造成引用错误，因此我们大多采用相同路径的文件来引用文件。
-例如，我们当前的目录结构是这样的
----GUI
-    ---test
-       ">
+    <meta name="keywords" content="hadoop配置总结, 伟少的博客">
+    <meta name="description" content="运行环境配置
+配置java运行环境变量
+vim /etc/profile
+export JAVA_HOME=/home/software/jdk1.8.0_181
+export CLASSPATH=$:CLASSPATH:$JAVA_HOM">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>python中引用文件的方法 | 伟少的博客</title>
+    <title>hadoop配置总结 | 伟少的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -210,13 +209,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs4.51cto.com%2Foss%2F202004%2F09%2Fa75024e72b3736de88328cb2075dc4d1.jpg-wh_651x-s_4004662018.jpg&refer=http%3A%2F%2Fs4.51cto.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628067044&t=6d47b95864f6db2c21964f80e1136a6e')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fseo-1255598498.file.myqcloud.com%2Ffull%2F1f9557200de0f3fa713545d379517e27f843cc06.jpg&refer=http%3A%2F%2Fseo-1255598498.file.myqcloud.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1638358744&t=26f17ce14d3359bcb5daf938749c71e0')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        python中引用文件的方法
+                        hadoop配置总结
                     </div>
                 </div>
             </div>
@@ -328,8 +327,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/hadoop/">
+                                <span class="chip bg-color">hadoop</span>
                             </a>
                         
                     </div>
@@ -340,8 +339,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Python/" class="post-category">
-                                Python
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
+                                大数据
                             </a>
                         
                     </div>
@@ -353,21 +352,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-10-31
+                    2021-10-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2019-10-31
+                    2021-10-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    434
+                    974
                 </div>
                 
 
@@ -380,45 +379,237 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><hr>
-<p>在程序中引用文件无非是通过两种方式——<strong>绝对路径与相对路径</strong>，但是前者往往因为文件目录的改动而造成引用错误，因此我们大多采用相同路径的文件来引用文件。</p>
-<p>例如，我们当前的目录结构是这样的</p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>GUI
-    <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>test
-        <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>demo<span class="token punctuation">.</span>py
-        <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>file<span class="token punctuation">.</span>json
-    <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>api<span class="token punctuation">.</span>py
+                <h3 id="运行环境配置"><a href="#运行环境配置" class="headerlink" title="运行环境配置"></a>运行环境配置</h3><ul>
+<li><p>配置java运行环境变量</p>
+<pre class=" language-shell"><code class="language-shell">vim /etc/profile
+export JAVA_HOME=/home/software/jdk1.8.0_181
+export CLASSPATH=$:CLASSPATH:$JAVA_HOME/lib/
+export PATH=$PATH:$JAVA_HOME/bin
 </code></pre>
-<p>在demo.py中有函数**read_data()**来读取file.json中的内容</p>
-<pre class=" language-python"><code class="language-python">read_data<span class="token punctuation">(</span>file_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        <span class="token keyword">with</span> open<span class="token punctuation">(</span>file_path<span class="token punctuation">,</span>mode<span class="token operator">=</span><span class="token string">'r'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> json_file<span class="token punctuation">:</span>
-            config<span class="token operator">=</span>json<span class="token punctuation">.</span>load<span class="token punctuation">(</span>json_file<span class="token punctuation">)</span>
-            <span class="token keyword">return</span> config
-        <span class="token keyword">except</span> FileNotFoundError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+</li>
+<li><p>查看配置是否成功</p>
+<pre class=" language-shell"><code class="language-shell">java -v
 </code></pre>
-<p>其中将file_path改为<strong>“./file.json”</strong>即可读取file.json中内容</p>
-<p>那么现在我们在api.py中调用demo.py发现会报如下错误：</p>
-<blockquote>
-<p>找不到file.json</p>
-</blockquote>
-<p>？？？？什么鬼？</p>
-<p>我们的文件路径经过开始的测试没有错误啊，为什么会出现这样的错误？</p>
-<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><hr>
-<p>事实上，我们的相对文件路径并没有错，当然这是建立在脚本程序和所读文件在相同的目录下，但是由于我们在其他目录下引用了相对路径，那么就会产生一个问题：python解释器在执行api.py时在api.py的父级目录下找不到file.json,因此便会报错，那么有什么方法可以让文件的路径始终保持唯一不变呢？请看下面</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> os
-current_path<span class="token operator">=</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span>
-read_data<span class="token punctuation">(</span>file_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    full_path<span class="token operator">=</span>current_path<span class="token operator">+</span>file_path
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        <span class="token keyword">with</span> open<span class="token punctuation">(</span>full_path<span class="token punctuation">,</span>mode<span class="token operator">=</span><span class="token string">'r'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> json_file<span class="token punctuation">:</span>
-            config<span class="token operator">=</span>json<span class="token punctuation">.</span>load<span class="token punctuation">(</span>json_file<span class="token punctuation">)</span>
-            <span class="token keyword">return</span> config
-        <span class="token keyword">except</span> FileNotFoundError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+<h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2></li>
+<li><p>防火墙配置</p>
+<pre class=" language-shell"><code class="language-shell"># 关闭防火墙
+systemctl stop firewalld.service
+
+# 开放50070端口
+firewall-cmd --zone=public --add-port=50070/tcp --permanent
+
+# 关闭50070端口
+firewall-cmd --zone=public --remove-port=50070/tcp --permanent
+
+# 刷新配置
+firewall-cmd --reload
+
+# 查看当前开放的端口
+firewall-cmd --zone=public --list-ports
+
+# 查看防火墙状态
+firewall-cmd --state
+ 
+# 查看监听端口
+netstat -lnpt
+备注：centos7默认没有 netstat 命令，需要安装 net-tools 工具，yum install -y net-tools
 </code></pre>
-<p>在其中我们对前面的代码进行了改动，加入了**os.path.dirname(<strong>file</strong>)返回了该函数所在的脚本文件的路径,**因而在其他模块中进行调用时便可直接找到该文件</p>
+</li>
+</ul>
+<ul>
+<li><p>网卡IP配置</p>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gvdqj2d8x0j60np0fw45e02.jpg" alt="image.png"></p>
+</li>
+<li><p>配置主机名</p>
+<pre class=" language-shell"><code class="language-shell">vim /etc/sysconfig/network
+HOSTNAME=masterA
+</code></pre>
+</li>
+<li><p>修改hosts文件</p>
+<pre class=" language-shell"><code class="language-shell">vim /etc/hosts
+192.168.38.133  masterA            #子网地址，最后一位不一样，网关号都是相同的
+192.168.38.134  masterB
+192.168.38.135  masterC
+</code></pre>
+</li>
+<li><p>重启</p>
+<pre class=" language-shell"><code class="language-shell">reboot
+</code></pre>
+</li>
+</ul>
+<h2 id="免密登录"><a href="#免密登录" class="headerlink" title="免密登录"></a>免密登录</h2><pre class=" language-shell"><code class="language-shell">ssh-keygen            #生成密钥
+ssh-copy-id root@masterA        #密钥拷贝
+ssh-copy-id root@masterB
+ssh-copy-id root@masterC
+</code></pre>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>在配置过程中主要需要对以下几个文件进行配置：core-site.xml、hdfs-site.xml、mapred-site.xml、yarn-site.xml。</p>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gvg2fjsxs0j60lf0d3ad102.jpg" alt="image.png"></p>
+<ul>
+<li><p>core-site.xml</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>fs.defaultFS<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>            namenode地址
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>hdfs://master:9000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>hadoop.tmp.dir<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>            配置临时目录
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>/data/hadoop_repo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p>hdfs-site.xml</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>dfs.namenode.secondary.http-address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>cloud01:9001<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>dfs.namenode.name.dir<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>file://${hadoop.tmp.dir}/dfs/name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>dfs.datanode.data.dir<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>file://${hadoop.tmp.dir}/dfs/data<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p>yarn-site.xml</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>yarn.nodemanager.aux-services<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>mapreduce_shuffle<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>yarn.nodemanager.aux-services.mapreduce.shuffle.class<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>org.apache.hadoop.mapred.ShuffleHandler<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>yarn.resourcemanager.address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>cloud01:8132<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>yarn.resourcemanager.scheduler.address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>cloud01:8130<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>yarn.resourcemanager.resource-tracker.address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span><span class="token entity" title="&nbsp;">&amp;nbsp;</span>cloud01:8131<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>yarn.resourcemanager.admin.address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span><span class="token entity" title="&nbsp;">&amp;nbsp;</span>cloud01:8133<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>yarn.resourcemanager.webapp.address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+　　<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>cloud01:8188<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p>mapred-site.xml</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>mapreduce.framework.name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>yarn<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>mapreduce.jobhistory.address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>cloud01:10020<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>mapreduce.jobhistory.webapp.address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>cloud01:19888<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+</ul>
+<p>hdfs常见端口设置</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认</th>
+<th>配置文件</th>
+<th>例子值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fs.default.name namenode</td>
+<td>namenode RPC交互端口</td>
+<td>8020</td>
+<td>core-site.xml</td>
+<td>hdfs://master:8020/</td>
+</tr>
+<tr>
+<td>dfs.http.address</td>
+<td>NameNode web管理端口</td>
+<td>50070</td>
+<td>hdfs- site.xml</td>
+<td>0.0.0.0:50070</td>
+</tr>
+<tr>
+<td>dfs.datanode.address</td>
+<td>datanode　控制端口</td>
+<td>50010</td>
+<td>hdfs -site.xml</td>
+<td>0.0.0.0:50010</td>
+</tr>
+<tr>
+<td>dfs.datanode.ipc.address</td>
+<td>datanode的RPC服务器地址和端口</td>
+<td>50020</td>
+<td>hdfs-site.xml</td>
+<td>0.0.0.0:50020</td>
+</tr>
+<tr>
+<td>dfs.datanode.http.address</td>
+<td>datanode的HTTP服务器和端口</td>
+<td>50075</td>
+<td>hdfs-site.xml</td>
+<td>0.0.0.0:50075</td>
+</tr>
+</tbody></table>
+<h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><ul>
+<li><p>启动hdfs文件系统</p>
+<pre class=" language-shell"><code class="language-shell">start-dfs.sh
+</code></pre>
+</li>
+<li><p>关闭hdfs文件系统</p>
+<pre class=" language-shell"><code class="language-shell">stop-dfs.sh
+</code></pre>
+</li>
+<li><p>启动yarn资源管理器</p>
+<pre class=" language-shell"><code class="language-shell">start-yarn.sh
+</code></pre>
+</li>
+<li><p>关闭yarn资源管理器</p>
+<pre class=" language-shell"><code class="language-shell">stop-yarn.sh
+</code></pre>
+</li>
+</ul>
+<h2 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h2><ul>
+<li>DataNode和NameNode进程同时只能有一个工作。<ol>
+<li>NameNode在format初始化后会生成clusterID</li>
+<li>DataNode在启动后也会生成和NameNode一样的clusterID</li>
+<li>当重新格式化NameNode时，会生成新的clusterID,与未删除DataNode的clusterID不一致</li>
+</ol>
+</li>
+</ul>
+<p><strong>解决方案：在格式化之前，先删除DataNode里面的信息（去temp下删除Data目录）</strong></p>
+<p><strong>每次启动时需要将tmp目录下的current清空，以免版本不一致无法启动相关节点。</strong></p>
 
             </div>
             <hr/>
@@ -444,7 +635,7 @@ read_data<span class="token punctuation">(</span>file_path<span class="token pun
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.shaowei.tech/2019/10/31/python-zhong-yin-yong-wen-jian-de-fang-fa/">http://blog.shaowei.tech/2019/10/31/python-zhong-yin-yong-wen-jian-de-fang-fa/</a>
+                    <a href="http://blog.shaowei.tech/2021/10/08/hadoop-pei-zhi-zong-jie/">http://blog.shaowei.tech/2021/10/08/hadoop-pei-zhi-zong-jie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -482,8 +673,8 @@ read_data<span class="token punctuation">(</span>file_path<span class="token pun
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/hadoop/">
+                                    <span class="chip bg-color">hadoop</span>
                                 </a>
                             
                         </div>
@@ -909,49 +1100,51 @@ read_data<span class="token punctuation">(</span>file_path<span class="token pun
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/11/01/jian-dan-tcp-fu-wu-qi-gou-jian/">
+                <a href="/2021/10/08/hadoop-pei-zhi-zong-jie/">
                     <div class="card-image">
                         
-                        <img src="http://ww1.sinaimg.cn/large/006SFsamly1gq23icjcqrj30yl0jh40e.jpg" class="responsive-img" alt="简单TCP服务器构建">
+                        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fseo-1255598498.file.myqcloud.com%2Ffull%2F1f9557200de0f3fa713545d379517e27f843cc06.jpg&amp;refer=http%3A%2F%2Fseo-1255598498.file.myqcloud.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1638358744&amp;t=26f17ce14d3359bcb5daf938749c71e0" class="responsive-img" alt="hadoop配置总结">
                         
-                        <span class="card-title">简单TCP服务器构建</span>
+                        <span class="card-title">hadoop配置总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一.基本概念
-Socket(套接字）
-
-
- socket是一种操作系统提供的进程间通信机制。[1] 在操作系统中，通常会为应用程序提供一组应用程序接口（API），称为套接字接口（英语：socket API）。应用程序可以通过套接字接口，来使
+                            运行环境配置
+配置java运行环境变量
+vim /etc/profile
+export JAVA_HOME=/home/software/jdk1.8.0_181
+export CLASSPATH=$:CLASSPATH:$JAVA_HOM
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-11-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-category">
-                                    服务器
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
+                                    大数据
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/TCP/">
-                        <span class="chip bg-color">TCP</span>
+                    <a href="/tags/hadoop/">
+                        <span class="chip bg-color">hadoop</span>
                     </a>
                     
                 </div>
@@ -965,31 +1158,32 @@ Socket(套接字）
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/25/ha-fu-man-shu-ji-ha-fu-man-bian-ma-xiang-jie/">
+                <a href="/2021/09/28/xian-cheng-de-xu-jia-huan-xing/">
                     <div class="card-image">
                         
-                        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2018.cnblogs.com%2Fcommon%2F1522992%2F201911%2F1522992-20191123145118395-928562575.jpg&amp;refer=http%3A%2F%2Fimg2018.cnblogs.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1628067169&amp;t=df4d5978d810aa493a79bab3b5ff1711" class="responsive-img" alt="哈夫曼树及哈夫曼编码详解">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Multithreaded_process.svg/1280px-Multithreaded_process.svg.png" class="responsive-img" alt="线程的虚假唤醒">
                         
-                        <span class="card-title">哈夫曼树及哈夫曼编码详解</span>
+                        <span class="card-title">线程的虚假唤醒</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基本概念哈夫曼编码
-在讲哈夫曼树之前先来介绍一下哈夫曼编码的概念。在信息编码、数据压缩等方面，我们总是希望编码能够尽可能的简短一点，如此才能节省空间，提高传输效率。例如：如果采用等长编码的话编码’abcd’,则为00，01，10，11，此时
+                            什么是虚假唤醒？首先摘录来自维基百科的解释：
+
+This means that when you wait on a condition variable, the wait may (occasionally) return when n
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
-                                    数据结构与算法
+                            <a href="/categories/java/" class="post-category">
+                                    java
                                 </a>
                             
                             
@@ -999,8 +1193,8 @@ Socket(套接字）
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/">
-                        <span class="chip bg-color">哈夫曼树</span>
+                    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                        <span class="chip bg-color">多线程</span>
                     </a>
                     
                 </div>
