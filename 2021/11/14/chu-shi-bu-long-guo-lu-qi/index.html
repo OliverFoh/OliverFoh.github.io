@@ -5,10 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="referrer" content="no-referrer" />
-    <meta name="keywords" content="百度文库文档下载, 伟少的博客">
-    <meta name="description" content="之前用过一个百度文库在线下载文档的网站，非常好用，除了付费购买的不能下载之外其他的都可以下载，所以在这里安利一下。
-网址：http://www.blpack.com/
-">
+    <meta name="keywords" content="初识布隆过滤器, 伟少的博客">
+    <meta name="description" content="引言最近在看《Hbase原理与实战》这本书，在Hbase底层通过使用Bloom Filter这样的结构来减少对不必要的的行列的检索，所以觉得有必要记录一下。
+问题引出如何高效的判断一个元素是否存在于一个集合当中？
+对于这个问题，可以把集合中">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>百度文库文档下载 | 伟少的博客</title>
+    <title>初识布隆过滤器 | 伟少的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -207,13 +207,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://pics1.baidu.com/feed/d31b0ef41bd5ad6e5f1e6ae7f14090ddb7fd3c6d.jpeg?token=d6c870c1cb5c596f020bc5147dec80ce')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2020.cnblogs.com%2Fblog%2F1478011%2F202105%2F1478011-20210523234403230-1754703480.png&refer=http%3A%2F%2Fimg2020.cnblogs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1640180705&t=9cc084a137b366ac14090dc8fdf1361c')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        百度文库文档下载
+                        初识布隆过滤器
                     </div>
                 </div>
             </div>
@@ -325,8 +325,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93/">
-                                <span class="chip bg-color">百度文库</span>
+                            <a href="/tags/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">
+                                <span class="chip bg-color">布隆过滤器</span>
                             </a>
                         
                     </div>
@@ -337,8 +337,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/" class="post-category">
-                                资源分享
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                数据结构与算法
                             </a>
                         
                     </div>
@@ -350,21 +350,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-12-19
+                    2021-11-14
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2019-12-19
+                    2021-11-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    59
+                    1.3k
                 </div>
                 
 
@@ -377,8 +377,145 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>之前用过一个百度文库在线下载文档的网站，非常好用，除了付费购买的不能下载之外其他的都可以下载，所以在这里安利一下。</p>
-<p>网址：<a target="_blank" rel="noopener" href="http://www.blpack.com/">http://www.blpack.com/</a></p>
+                <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>最近在看《Hbase原理与实战》这本书，在Hbase底层通过使用Bloom Filter这样的结构来减少对不必要的的行列的检索，所以觉得有必要记录一下。</p>
+<h2 id="问题引出"><a href="#问题引出" class="headerlink" title="问题引出"></a>问题引出</h2><p>如何高效的判断一个元素是否存在于一个集合当中？</p>
+<p>对于这个问题，可以把集合中的元素一个个放入哈希表，然后在哈希表中查找一下即可。</p>
+<p>这种做法在小数据量场景下确实容易实现，但是当集合中的元素数量非常巨大时，甚至远远超过机器内存空间，该如何解决？</p>
+<h2 id="什么是布隆过滤器"><a href="#什么是布隆过滤器" class="headerlink" title="什么是布隆过滤器"></a>什么是布隆过滤器</h2><p>​    布隆过滤器（Bloom Filter），是1970年，由一个叫布隆的人提出的，距今已经五十年了。它其实是一个很长的二进制向量和一系列随机映射函数，由一个长度为N的01数组组成。主要用于判断一个元素是否在一个集合中，0表明不存在某个数据，1表明存在某个数据。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li><p>数据库场景</p>
+<p>BigTable、Hbase使用布隆过滤器减少对不存在的行、列查找。</p>
+</li>
+<li><p>缓存类场景</p>
+<p>Redis使用布隆过滤器防止缓存穿透。</p>
+</li>
+<li><p>去重场景</p>
+<ul>
+<li>Medium使用布隆过滤器避免推荐给用户已经读过的文章。</li>
+<li>在爬虫时，对爬虫网址进行过滤，已经存在布隆过滤器中的网址，不再爬取。</li>
+</ul>
+</li>
+<li><p>安全场景</p>
+<ul>
+<li>垃圾邮件过滤，对每个发送邮件的地址进行判断是否在布隆过滤器的黑名单中，若是在就判断为垃圾邮件。</li>
+<li>Chrome使用布隆过滤器识别恶意URL数据结构。</li>
+</ul>
+</li>
+</ul>
+<h2 id="原理实现"><a href="#原理实现" class="headerlink" title="原理实现"></a>原理实现</h2><h3 id="插入过程"><a href="#插入过程" class="headerlink" title="插入过程"></a>插入过程</h3><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo8ghbwtlj30wz0dqwga.jpg" alt="插入元素" style="zoom:67%;">
+
+<ol>
+<li><p>经过K个哈希函数计算该数据，返回K个计算出的hash值</p>
+</li>
+<li><p>这些K个hash值映射到对应的K个二进制的数组下标</p>
+</li>
+<li><p>将K个下标对应的二进制数据改为1。</p>
+<p><strong>例如，第一个哈希函数返回x，第二个第三个哈希函数返回y与z，那么：X、Y、Z对应的二进制改为1。</strong></p>
+</li>
+</ol>
+<h3 id="查找过程"><a href="#查找过程" class="headerlink" title="查找过程"></a>查找过程</h3><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo8hqwyttj30wa0cytat.jpg" alt="查找元素" style="zoom:67%;">
+
+<ol>
+<li><p>经过K个哈希函数计算该数据，对应计算出的K个hash值</p>
+</li>
+<li><p>经过hash值找到对应的二进制的数组下标</p>
+<p><strong>判断：若是存在一处位置的二进制数据是0，那么该数据不存在。若是都是1，该数据存在集合中。（这里有缺点，下面会讲）</strong></p>
+</li>
+</ol>
+<h3 id="误判情形"><a href="#误判情形" class="headerlink" title="误判情形"></a>误判情形</h3><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo8jrdxddj311c08jwiz.jpg" alt="误判情形" style="zoom:50%;">
+
+<p>“你好”与“Hello”经过哈希函数映射在同一个位置，会产生以下情况：</p>
+<p>若只有一个元素存在时，对另外一个元素哈希后也可判断存在（事实上根本不存在）。</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>因为存储的是二进制数据，因此占用的空间很小。</li>
+<li>它的插入和查询速度是很是快的，时间复杂度是O(K)，能够联想一下HashMap的过程。</li>
+<li>保密性很好，由于自己不存储任何原始数据，只有二进制数据。</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>不同数据Hash到同一个位置，无法判断是否存在，因而会导致误判，比如正常邮件被当作垃圾邮件拦截。</li>
+<li>删除困难，删除时可能导致其他元素也被删除置为0。</li>
+</ul>
+<h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><h3 id="关键参数"><a href="#关键参数" class="headerlink" title="关键参数"></a>关键参数</h3><ul>
+<li>位数组（Bit Array）长度：m</li>
+<li>哈希函数（Hash Function）个数：K</li>
+<li>已添加元素数量（Items in the Filter）：n</li>
+<li>误判率（False positive probability）：FPP(P)</li>
+</ul>
+<h3 id="计算公式"><a href="#计算公式" class="headerlink" title="计算公式"></a>计算公式</h3><p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo9f8xy51j30hz06275b.jpg" alt="各参数关系式"></p>
+<h3 id="误判率推导"><a href="#误判率推导" class="headerlink" title="误判率推导"></a>误判率推导</h3><ol>
+<li><p>假设 Hash 函数以等概率条件选择并设置 Bit Array 中的某一位，m 是该位数组的大小，k 是 Hash 函数的个数，位数组中某一特定的位在进行元素插入时的 Hash 操作中没有被置位的概率是：</p>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo9isvpi3j308303jdfm.jpg"></p>
+</li>
+<li><p>在所有 k 次 Hash 操作后该位都没有被置 “1” 的概率是：</p>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo9j6uydlj305y03kjr8.jpg"></p>
+</li>
+<li><p>插入了 n 个元素，那么某一位仍然为 “0” 的概率是：</p>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo9loy299j306l03djr8.jpg"></p>
+</li>
+<li><p>因而该位为“1”的概率是：</p>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo9m5rofkj308d03lglh.jpg"></p>
+</li>
+<li><p>当我们对某个元素进行判重时，误判即这个元素对应的k 个标志位不全为1，但所有k个标志位都被置为1(<strong>这个误判率应当比实际值大，因为将判断正确的情况也算进去了。当n取无穷大时，取极限可以得到右式</strong>)：</p>
+</li>
+</ol>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo9msjwo4j30e8043wei.jpg"></p>
+<h3 id="变化曲线"><a href="#变化曲线" class="headerlink" title="变化曲线"></a>变化曲线</h3><p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo92m0f33j30fj05975h.jpg"></p>
+<ul>
+<li><p>p-k</p>
+<img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo90dh14nj30la0b0ab6.jpg" alt="" style="zoom:80%;"></li>
+<li><p>p-n</p>
+<img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo918wnzvj30lu0b1jtl.jpg" alt="" style="zoom:80%;"></li>
+<li><p>p-m</p>
+<img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo91kzkvvj30lu0bctb4.jpg" alt="" style="zoom:80%;"></li>
+</ul>
+<h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><ol>
+<li><p>引入Guava依赖</p>
+<img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo94e9offj30iq05o0us.jpg" alt="依赖引入" style="zoom:80%;"></li>
+<li><p>参数设置</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+     * 预计要插入多少数据
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">int</span> size <span class="token operator">=</span> <span class="token number">100000</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 指望的误判率
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">double</span> fpp <span class="token operator">=</span> <span class="token number">0.01</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 布隆过滤器
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> BloomFilter<span class="token operator">&lt;</span>Integer<span class="token operator">></span> bloomFilter <span class="token operator">=</span> BloomFilter<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>Funnels<span class="token punctuation">.</span><span class="token function">integerFunnel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> size<span class="token punctuation">,</span> fpp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p>测试用例</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 插入10万样本数据</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            bloomFilter<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 用另外十万个完全不一样的数据，测试误判率</span>
+        <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> size<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size <span class="token operator">+</span> <span class="token number">100000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>bloomFilter<span class="token punctuation">.</span><span class="token function">mightContain</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                count<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//System.out.println(i + "误判了");</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"总共的误判数:"</span> <span class="token operator">+</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li><p>结果输出</p>
+</li>
+</ol>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo96s7wkmj30lc060di7.jpg" alt="FPP=0.01"></p>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gwo973fougj30kg06b76i.jpg" alt="FPP=0.03"></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul>
+<li>误判率能够经过FPP参数进行调节</li>
+<li>FPP越小，须要的内存空间就越大：0.01须要900多万位数，0.03须要700多万位数。</li>
+<li>FPP越小，集合添加数据时，就须要更多的hash函数运算更多的hash值，去存储到对应的数组下标里。</li>
+</ul>
 
             </div>
             <hr/>
@@ -404,7 +541,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://blog.shaowei.tech/2019/12/19/bai-du-wen-ku-wen-dang-xia-zai/">http://blog.shaowei.tech/2019/12/19/bai-du-wen-ku-wen-dang-xia-zai/</a>
+                    <a href="http://blog.shaowei.tech/2021/11/14/chu-shi-bu-long-guo-lu-qi/">http://blog.shaowei.tech/2021/11/14/chu-shi-bu-long-guo-lu-qi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -442,8 +579,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93/">
-                                    <span class="chip bg-color">百度文库</span>
+                                <a href="/tags/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">
+                                    <span class="chip bg-color">布隆过滤器</span>
                                 </a>
                             
                         </div>
@@ -869,45 +1006,49 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/01/19/2019-nian-zong-jie/">
+                <a href="/2021/11/14/chu-shi-bu-long-guo-lu-qi/">
                     <div class="card-image">
                         
-                        <img src="https://i.loli.net/2020/01/19/w5TDI9EFzrxf26e.png" class="responsive-img" alt="2019年总结">
+                        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2020.cnblogs.com%2Fblog%2F1478011%2F202105%2F1478011-20210523234403230-1754703480.png&amp;refer=http%3A%2F%2Fimg2020.cnblogs.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1640180705&amp;t=9cc084a137b366ac14090dc8fdf1361c" class="responsive-img" alt="初识布隆过滤器">
                         
-                        <span class="card-title">2019年总结</span>
+                        <span class="card-title">初识布隆过滤器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            写在前面2019年过去了，虽然现在已经是2020年一月下旬了，但是我不太喜欢去用阳历的时间划分时间节点，即使自己生日都是过的阴历生日，可能自己性格属于那种比较偏老成一些吧。去年大年三十晚上是我第一次写自己的年终总结，我可能真是个神人，大年三
+                            引言最近在看《Hbase原理与实战》这本书，在Hbase底层通过使用Bloom Filter这样的结构来减少对不必要的的行列的检索，所以觉得有必要记录一下。
+问题引出如何高效的判断一个元素是否存在于一个集合当中？
+对于这个问题，可以把集合中
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                    随笔
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%80%BB%E7%BB%93/">
-                        <span class="chip bg-color">总结</span>
+                    <a href="/tags/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">
+                        <span class="chip bg-color">布隆过滤器</span>
                     </a>
                     
                 </div>
@@ -921,34 +1062,34 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/12/12/liu-lan-qi-qing-qiu-yi-ge-url-xiang-xi-guo-cheng/">
+                <a href="/2021/10/08/hadoop-pei-zhi-zong-jie/">
                     <div class="card-image">
                         
-                        <img src="https://i.loli.net/2019/12/19/u6wMaQhndYpxg91.png" class="responsive-img" alt="浏览器请求一个URL详细过程">
+                        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fseo-1255598498.file.myqcloud.com%2Ffull%2F1f9557200de0f3fa713545d379517e27f843cc06.jpg&amp;refer=http%3A%2F%2Fseo-1255598498.file.myqcloud.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1638358744&amp;t=26f17ce14d3359bcb5daf938749c71e0" class="responsive-img" alt="hadoop配置总结">
                         
-                        <span class="card-title">浏览器请求一个URL详细过程</span>
+                        <span class="card-title">hadoop配置总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言基本每个人每天都会使用到浏览器进行上网，那么在我们输入一个网址后其背后运行的原理是什么样的？如何将一个玲琅满目的网页显示出来，其中经历了一个怎样的过程，总的来说，分为以下几个过程
-
-DNS解析
-HTTP请求发送
-服务器处理请求并返回结果
+                            运行环境配置
+配置java运行环境变量
+vim /etc/profile
+export JAVA_HOME=/home/software/jdk1.8.0_181
+export CLASSPATH=$:CLASSPATH:$JAVA_HOM
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                    计算机网络
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
+                                    大数据
                                 </a>
                             
                             
@@ -958,16 +1099,8 @@ HTTP请求发送
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/DNS/">
-                        <span class="chip bg-color">DNS</span>
-                    </a>
-                    
-                    <a href="/tags/HTTP/">
-                        <span class="chip bg-color">HTTP</span>
-                    </a>
-                    
-                    <a href="/tags/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/">
-                        <span class="chip bg-color">页面渲染</span>
+                    <a href="/tags/hadoop/">
+                        <span class="chip bg-color">hadoop</span>
                     </a>
                     
                 </div>

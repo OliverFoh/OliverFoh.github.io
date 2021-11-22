@@ -531,6 +531,8 @@
 <li><p>如果workerCount &gt;= maximumPoolSize，并且线程池内的阻塞队列已满, 则根据拒绝策略来处理该任务, 默认的处理方式是直接抛异常。</p>
 </li>
 </ol>
+<h3 id="拒绝策略"><a href="#拒绝策略" class="headerlink" title="拒绝策略"></a>拒绝策略</h3><p>当线程池的任务缓冲队列已满，并且线程池中的线程个数达到maximumPoolSize时需要拒绝掉该任务，任务的拒绝策略主要有以下的几种。</p>
+<p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gvzwpftqlpj316u0dztfk.jpg" alt="四种拒绝策略"></p>
 <h3 id="阻塞队列类型"><a href="#阻塞队列类型" class="headerlink" title="阻塞队列类型"></a>阻塞队列类型</h3><p>其中前两种阻塞队列比较常用。</p>
 <p><img src="http://tva1.sinaimg.cn/large/006SFsamly1gvzuxbh79dj30zy0fu7c1.jpg" alt="阻塞队列分类"></p>
 <h2 id="四种常用线程池"><a href="#四种常用线程池" class="headerlink" title="四种常用线程池"></a>四种常用线程池</h2><p>Java通过Executors提供四种线程池，底层均是由ThreadPoolExecutor实现的，分别为：</p>
@@ -1353,7 +1355,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">28.8k</span>&nbsp;字
+                class="white-color">30.2k</span>&nbsp;字
             
             <br>
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
