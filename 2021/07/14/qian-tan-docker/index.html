@@ -27,9 +27,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -476,14 +476,14 @@ yum makecache fast
 yum list docker-ce.x86_64  --showduplicates | sort -r    #从高到低列出Docker-ce的版本
 
 # 安装指定版本（将version-string替换为要安装的版本号）
-yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io
+yum install docker-ce-<version_string> docker-ce-cli-<version_string> containerd.io
 
 # 安装最新版本
 yum -y install docker-ce
 
 # 检查docker是否安装成功
 docker info或者docker version
-</code></pre>
+</version_string></version_string></code></pre>
 <h3 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h3><pre class=" language-shell"><code class="language-shell"># service命令的写法
 sudo service docker start
 
@@ -491,9 +491,9 @@ sudo service docker start
 systemctl start docker
 </code></pre>
 <h3 id="配置镜像加速"><a href="#配置镜像加速" class="headerlink" title="配置镜像加速"></a>配置镜像加速</h3><p>由于Docker仓库位于国外，所以从国内拉取镜像资源常常会出现网络报错的情况，那么就需要配置国内的镜像仓库提高拉取速度，对于使用 systemd 的系统，可通过在 /etc/docker/daemon.json 中写入如下内容。</p>
-<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+<pre class=" language-json"><code class="language-json">&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token property">"registry-mirrors"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"国内仓库地址"</span><span class="token punctuation">]</span>
-<span class="token punctuation">}</span>
+&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>国内常用docker仓库地址有：</p>
 <ul>
@@ -1293,7 +1293,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">30.2k</span>&nbsp;字
+                class="white-color">30.9k</span>&nbsp;字
             
             <br>
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
