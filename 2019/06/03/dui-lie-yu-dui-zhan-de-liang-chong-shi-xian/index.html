@@ -30,9 +30,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -369,7 +369,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    1.6k
                 </div>
                 
 
@@ -395,215 +395,215 @@
 <h3 id="栈与队列"><a href="#栈与队列" class="headerlink" title="栈与队列"></a>栈与队列</h3><p><strong>堆栈</strong>是一种先进后出的结构，生活中的例子似乎不太多，不过还是有一些例子，比如一摞碗，每次取的时候总是取得最上边的碗，最下边的碗总是最后一个被取走。<strong>队列</strong>是一种先进先出的结构，生活中例子很多，最常见的就是排队了，排在前边的人先被服务，后边的人最后被服务。</p>
 <h2 id="节点结构与接口声明"><a href="#节点结构与接口声明" class="headerlink" title="节点结构与接口声明"></a>节点结构与接口声明</h2><p>每个节点有数据域与指针域，栈与队列类实现了添加、弹出、求长度、判断为空等接口方法</p>
 <h3 id="节点结构"><a href="#节点结构" class="headerlink" title="节点结构"></a>节点结构</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//节点类</span>
-<span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">{</span>
     <span class="token keyword">private</span> Object data<span class="token punctuation">;</span>
     <span class="token keyword">public</span> Node next<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span>Object data<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span>Object data<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token operator">=</span>data<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<h3 id="接口声明"><a href="#接口声明" class="headerlink" title="接口声明"></a>接口声明</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">Stack</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">/*堆栈接口*/</span>
+<h3 id="接口声明"><a href="#接口声明" class="headerlink" title="接口声明"></a>接口声明</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">Stack</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">/*堆栈接口*/</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//压入堆栈</span>
     <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>                <span class="token comment" spellcheck="true">//弹出堆栈</span>
     <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">//计算堆栈元素个数</span>
     <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//求元素索引1</span>
     <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//判断堆栈是否为空</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="token keyword">interface</span> <span class="token class-name">Queue</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//队列接口声明</span>
+<span class="token keyword">interface</span> <span class="token class-name">Queue</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//队列接口声明</span>
     <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//队列长度</span>
     <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//队列是否为空</span>
     <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//求某个元素索引</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//添加元素</span>
     <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>             <span class="token comment" spellcheck="true">//弹出元素</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h2 id="堆栈"><a href="#堆栈" class="headerlink" title="堆栈"></a>堆栈</h2><h3 id="链表结构（头插法）"><a href="#链表结构（头插法）" class="headerlink" title="链表结构（头插法）"></a>链表结构（头插法）</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//堆栈类（单链表-头插法）</span>
-<span class="token keyword">class</span> <span class="token class-name">StackList</span> <span class="token keyword">implements</span> <span class="token class-name">Stack</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">StackList</span> <span class="token keyword">implements</span> <span class="token class-name">Stack</span><span class="token punctuation">{</span>
     <span class="token keyword">private</span> Node head<span class="token operator">=</span>null<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">StackList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">StackList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         head<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//初始化头指针</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         Node temp<span class="token operator">=</span>head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
         head<span class="token punctuation">.</span>next<span class="token operator">=</span>node<span class="token punctuation">;</span>
         node<span class="token punctuation">.</span>next<span class="token operator">=</span>temp<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//队列为空报错</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>       <span class="token comment" spellcheck="true">//队列为空报错</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"当前队列为空，请先添加元素！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//循环计数器</span>
         <span class="token keyword">boolean</span> isMatch<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//是否匹配成功标志</span>
         Node temp<span class="token operator">=</span>head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>temp<span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//地址相同即为相同对象</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>temp<span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//地址相同即为相同对象</span>
                 isMatch<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
                 <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
             temp<span class="token operator">=</span>temp<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
             i<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isMatch<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isMatch<span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"当前队列没有该元素！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token punctuation">.</span>next<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token punctuation">.</span>next<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"当前堆栈为空！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         Node temp<span class="token operator">=</span>head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
         head<span class="token punctuation">.</span>next<span class="token operator">=</span>head<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
         <span class="token keyword">return</span> temp<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
         Node temp<span class="token operator">=</span>head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
             temp<span class="token operator">=</span>temp<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
             i<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> head<span class="token punctuation">.</span>next<span class="token operator">==</span>null<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h3 id="数组结构"><a href="#数组结构" class="headerlink" title="数组结构"></a>数组结构</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//堆栈类（数组实现）</span>
-<span class="token keyword">class</span> <span class="token class-name">StackArray</span> <span class="token keyword">implements</span> <span class="token class-name">Stack</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">StackArray</span> <span class="token keyword">implements</span> <span class="token class-name">Stack</span><span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">int</span> size<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//当前堆栈中元素个数</span>
     <span class="token keyword">private</span> Node<span class="token punctuation">[</span><span class="token punctuation">]</span> head<span class="token operator">=</span>null<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//数组首指针</span>
-    <span class="token keyword">public</span> <span class="token function">StackArray</span><span class="token punctuation">(</span><span class="token keyword">int</span> maxsize<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">StackArray</span><span class="token punctuation">(</span><span class="token keyword">int</span> maxsize<span class="token punctuation">)</span><span class="token punctuation">{</span>
         head<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">[</span>maxsize<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>size<span class="token operator">&gt;=</span>head<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>size<span class="token operator">>=</span>head<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"堆栈已满！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         head<span class="token punctuation">[</span>size<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>node<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"堆栈为空！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> head<span class="token punctuation">[</span><span class="token operator">--</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> size<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
         <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//循环标志</span>
         <span class="token keyword">boolean</span> isMatch<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//查找成功标志</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>size<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>size<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token punctuation">{</span>
                 isMatch<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
                 <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isMatch<span class="token punctuation">)</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"该元素不存在！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> size<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="链表结构（尾插法）"><a href="#链表结构（尾插法）" class="headerlink" title="链表结构（尾插法）"></a>链表结构（尾插法）</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//队列类（单链表实现-尾插法）</span>
-<span class="token keyword">class</span> <span class="token class-name">QueueList</span> <span class="token keyword">implements</span> <span class="token class-name">Queue</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">QueueList</span> <span class="token keyword">implements</span> <span class="token class-name">Queue</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> Node head<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token function">QueueList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">QueueList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         head<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">//计算队列长度（不包含头节点）</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
         Node temp<span class="token operator">=</span>head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
             temp<span class="token operator">=</span>temp<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
             i<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">//队列是否为空</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> head<span class="token punctuation">.</span>next<span class="token operator">==</span>null<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">//查找节点位置索引</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//队列为空报错</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>       <span class="token comment" spellcheck="true">//队列为空报错</span>
              <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"当前队列为空，请先添加元素！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
         <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//循环计数器</span>
         <span class="token keyword">boolean</span> isMatch<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//是否匹配成功标志</span>
         Node temp<span class="token operator">=</span>head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>temp<span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//地址相同即为相同对象</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>temp<span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//地址相同即为相同对象</span>
                 isMatch<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
                 <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
             temp<span class="token operator">=</span>temp<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
             i<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isMatch<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isMatch<span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"当前队列没有该元素！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">//添加节点</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
         Node temp<span class="token operator">=</span>head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token punctuation">.</span>next<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>temp<span class="token punctuation">.</span>next<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
             temp<span class="token operator">=</span>temp<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>temp<span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>temp<span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token punctuation">{</span>
                 <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"该元素已经添加过！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
         temp<span class="token punctuation">.</span>next<span class="token operator">=</span>node<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">//弹出节点</span>
-    <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
         Node tempNode<span class="token operator">=</span>null<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"队列为空！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
             tempNode<span class="token operator">=</span>head<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
             head<span class="token punctuation">.</span>next<span class="token operator">=</span>head<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> tempNode<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h3 id="数组结构（循环数组）"><a href="#数组结构（循环数组）" class="headerlink" title="数组结构（循环数组）"></a>数组结构（循环数组）</h3><p>在使用数组实现队列时容易形成<strong>假满</strong>现象，设想一下一个数组里元素为满的情况下从数组首元素开始出队列，直到剩下最后一个元素，若此时需要添加新的元素因为尾部已经没有空间，所以造成了空间浪费，因而采用循环数组的形式实现。</p>
 <p><img src="https://i.loli.net/2020/01/30/PKje7TAEwH1hdn8.png" alt="循环队列"></p>
 <p>实现的方法主要是下一个位置对数组长度求余，比如数组长度为5，当前数组最后一个位置刚填入一个元素，那么下次的位置应该为0号位置（5%5=0）。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//队列类（循环数组实现）</span>
-<span class="token keyword">class</span> <span class="token class-name">QueueArray</span> <span class="token keyword">implements</span> <span class="token class-name">Queue</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">QueueArray</span> <span class="token keyword">implements</span> <span class="token class-name">Queue</span><span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">int</span> Length<span class="token punctuation">;</span>
     <span class="token keyword">private</span> Node<span class="token punctuation">[</span><span class="token punctuation">]</span> head<span class="token operator">=</span>null<span class="token punctuation">;</span>
 
@@ -611,68 +611,68 @@
     <span class="token keyword">private</span> <span class="token keyword">int</span> front<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//队首指针</span>
     <span class="token keyword">private</span> <span class="token keyword">int</span> rear<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//队尾指针</span>
 
-    <span class="token keyword">public</span> <span class="token function">QueueArray</span><span class="token punctuation">(</span><span class="token keyword">int</span> length<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">QueueArray</span><span class="token punctuation">(</span><span class="token keyword">int</span> length<span class="token punctuation">)</span><span class="token punctuation">{</span>
         Length<span class="token operator">=</span>length<span class="token punctuation">;</span>
         head<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">[</span>Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">//队首队尾都指向0号位置</span>
         front<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
         rear<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>count<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">&lt;</span><span class="token keyword">this</span><span class="token punctuation">.</span>Length<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">&lt;</span><span class="token keyword">this</span><span class="token punctuation">.</span>Length<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
                 count<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
             i<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> count<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> front<span class="token operator">==</span>rear<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">isFull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">isFull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>rear<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span>Length<span class="token operator">==</span><span class="token keyword">this</span><span class="token punctuation">.</span>front<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">indexOf</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
         <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//循环标志</span>
         <span class="token keyword">boolean</span> isMatch<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"队列为空！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>node<span class="token punctuation">)</span><span class="token punctuation">{</span>
                 isMatch<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
                 <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
             i<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isMatch<span class="token punctuation">)</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"该元素不存在"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isFull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"队列已满！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         head<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>rear<span class="token punctuation">]</span><span class="token operator">=</span>node<span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>rear<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>rear<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span>Length<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> Node <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"当前队列为空！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Node temp<span class="token operator">=</span>head<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>front<span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>front<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>front<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span>Length<span class="token punctuation">;</span>
         <span class="token keyword">return</span> temp<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
             </div>
@@ -1414,7 +1414,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">30.9k</span>&nbsp;字
+                class="white-color">31.7k</span>&nbsp;字
             
             <br>
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

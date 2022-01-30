@@ -27,9 +27,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -556,7 +556,7 @@ datasource<span class="token operator">:</span>
 <h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>在未引入Redis缓存的情况下若前端小程序加载刚刚加载过的房源详情页面时服务端会重新调用推荐算法模型生成推荐列表，这样在请求量较少的时候系统还可以承载，若请求量增大时，系统将会耗费大量的时间在CPU运算处理任务上，请求响应时间将会大大增加。而引入Redis缓存中间件后则可以使得不必每次都去调用算法模型来生成推荐列表，只需要先在Redis缓存中查找请求的房源ID是否已经存在于Redis缓存之中，若存在时则直接从房源列表中取出推荐房源列表并返回；若未存在时则将房源ID传入算法模型进行处理，生成推荐列表后返回前端。</p>
 <p>SpringBoot项目在启动时会根据Redis配置类来配置Redis，包括设置缓存过期时间、序列化与反序列化机制等。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*Redis配置*/</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisConfig</span> <span class="token keyword">extends</span> <span class="token class-name">CachingConfigurerSupport</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisConfig</span> <span class="token keyword">extends</span> <span class="token class-name">CachingConfigurerSupport</span><span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> StringRedisSerializer STRING_SERIALIZER <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> GenericJackson2JsonRedisSerializer JACKSON__SERIALIZER <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GenericJackson2JsonRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -566,7 +566,7 @@ datasource<span class="token operator">:</span>
      * @return
      */</span>
     <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> CacheManager <span class="token function">cacheManager</span><span class="token punctuation">(</span>RedisConnectionFactory redisConnectionFactory<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> CacheManager <span class="token function">cacheManager</span><span class="token punctuation">(</span>RedisConnectionFactory redisConnectionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">//设置缓存过期时间</span>
         RedisCacheConfiguration redisCacheCfg<span class="token operator">=</span>RedisCacheConfiguration<span class="token punctuation">.</span><span class="token function">defaultCacheConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">entryTtl</span><span class="token punctuation">(</span>Duration<span class="token punctuation">.</span><span class="token function">ofMinutes</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -575,7 +575,7 @@ datasource<span class="token operator">:</span>
         <span class="token keyword">return</span> RedisCacheManager<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span>RedisCacheWriter<span class="token punctuation">.</span><span class="token function">nonLockingRedisCacheWriter</span><span class="token punctuation">(</span>redisConnectionFactory<span class="token punctuation">)</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">cacheDefaults</span><span class="token punctuation">(</span>redisCacheCfg<span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
      * 序列化与反序列化配置
@@ -584,9 +584,9 @@ datasource<span class="token operator">:</span>
      */</span>
     <span class="token annotation punctuation">@Bean</span>
     <span class="token annotation punctuation">@ConditionalOnMissingBean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"redisTemplate"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">&gt;</span> <span class="token function">redisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory factory<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> <span class="token function">redisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory factory<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// 配置redisTemplate</span>
-        RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">&gt;</span> redisTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> redisTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         redisTemplate<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>factory<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment" spellcheck="true">// key序列化</span>
         redisTemplate<span class="token punctuation">.</span><span class="token function">setKeySerializer</span><span class="token punctuation">(</span>STRING_SERIALIZER<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -598,21 +598,21 @@ datasource<span class="token operator">:</span>
         redisTemplate<span class="token punctuation">.</span><span class="token function">setHashValueSerializer</span><span class="token punctuation">(</span>JACKSON__SERIALIZER<span class="token punctuation">)</span><span class="token punctuation">;</span>
         redisTemplate<span class="token punctuation">.</span><span class="token function">afterPropertiesSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> redisTemplate<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>在utils目录下定义了RedisUtil工具类，该工具类主要一些Redis的常见操作：包括设置key、判断key是否存在、删除key值等操作。业务类可直接使用Redis工具类来操作Redis，降低了程序的耦合性。</p>
 <p>在业务类中调用Redis工具类的判断key值是否存在的方法来判断当前房源ID的推荐列表是否已经存在于Redis缓存，若已经存在时则直接返回结果；若不存在时，则通过RPC服务的方式调用推荐算法，并将生成的推荐列表进行缓存，以供下次使用。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*Redis缓存判断逻辑*/</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>redisUtil<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span>roomId<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//判断该房源推荐列表是否已经在redis中缓存过</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>redisUtil<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span>roomId<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>       <span class="token comment" spellcheck="true">//判断该房源推荐列表是否已经在redis中缓存过</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"已经在redis中缓存过"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     roomIdList<span class="token operator">=</span>redisUtil<span class="token punctuation">.</span><span class="token function">getList</span><span class="token punctuation">(</span>roomId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第一次推荐，未缓存"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     roomIdList<span class="token operator">=</span>PythonRpc<span class="token punctuation">.</span><span class="token function">generateSimilarityList</span><span class="token punctuation">(</span>city<span class="token punctuation">,</span> roomId<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">//推荐列表缓存进redis</span>
     redisUtil<span class="token punctuation">.</span><span class="token function">setList</span><span class="token punctuation">(</span>roomId<span class="token punctuation">,</span>roomIdList<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p><img src="http://ww1.sinaimg.cn/mw690/006SFsamly1gs44hsxl0zj30sg0nigq3.jpg" alt="小程序Tab页"></p>
 <p><img src="http://ww1.sinaimg.cn/mw690/006SFsamly1gs44htvs9dj30sc0nl4e2.jpg" alt="房源详情页"></p>
@@ -1359,7 +1359,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <span id="year">年份</span>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">30.9k</span>&nbsp;字
+                class="white-color">31.7k</span>&nbsp;字
             
             <br>
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
